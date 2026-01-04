@@ -1,0 +1,23 @@
+:host {
+    display: block;
+    width: 100vh;
+}
+
+.game {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 3rem;
+    gap: 1rem;
+  }
+
+  
+  @media screen and (max-width: 650px) {
+    .game {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+    }
+}
