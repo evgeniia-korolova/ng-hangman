@@ -7,5 +7,5 @@ const defaultPath = 'data/data/general'
   providedIn: 'root',
 })
 export class HangmanService {
-  questions = httpResource(() => 'defaultPath')
+  questions = httpResource(() => `${defaultPath}`)
 }

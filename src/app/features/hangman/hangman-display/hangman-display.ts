@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class HangmanDisplay {
   mistakesRemaining = 7;
-  success: boolean = false;
+  success = false;
 }

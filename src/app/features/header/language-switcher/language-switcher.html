@@ -1,0 +1,6 @@
+<label for="lang" class="visually-hidden">{{ 'choose_language' | transloco }}</label>
+<select name="" id="lang" (change)="onLanguageChange($event)">
+  @for (lang of languages(); track $index) {
+    <option [value]="lang" [selected]="lang === currentLanguage()">{{ lang | transloco }}</option>
+  }
+</select>

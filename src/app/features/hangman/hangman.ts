@@ -11,15 +11,10 @@ import { HangmanService } from './services/hangman-service';
   styleUrl: './hangman.scss',
 })
 export class Hangman {
-  question: string = '';
+  question = '';
   questions: string[] = [];
   guesses: string[] = [];
-  category: string = '';
+  category = '';
 
-  hangmanService = inject(HangmanService)
-
-  constructor() {
-    
-  }
-
+  private readonly hangmanService = inject(HangmanService);
 }
