@@ -4,8 +4,10 @@
     "ru": "Russian",
     "choose_language": "lang",
     "mistakes_remaining": "Mistakes remaining",
+    "choose_category": "Choose category",
     "categories": {
         "general": {
+            "title": "general",
             "items": [
                 {
                     "word": "guitar",
@@ -46,6 +48,19 @@
                 {
                     "word": "pizza",
                     "hint": "A savory dish consisting of a round, flattened base with toppings."
+                }
+            ]
+        },
+        "animals": {
+            "title": "animals",
+            "items": [
+                {
+                    "word": "lion",
+                    "hint": "The king of the jungle."
+                },
+                {
+                    "word": "eagle",
+                    "hint": "A bird with sharp vision."
                 }
             ]
         }
