@@ -1,6 +1,6 @@
-import { Component, inject, Renderer2, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
+import { Component, inject, Renderer2 } from '@angular/core';
+import { TranslocoPipe } from '@jsverse/transloco';
+import { LanguageService } from '../../../core/services/language-service';
 
 @Component({
   selector: 'app-language-switcher',
@@ -9,51 +9,21 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
   styleUrl: './language-switcher.scss',
 })
 export class LanguageSwitcher {
-  private readonly translocoService = inject(TranslocoService);
+  private readonly langService = inject(LanguageService);
   private readonly renderer = inject(Renderer2);
 
-  protected readonly currentLanguage = signal<string>('en');
-  protected readonly languages = signal<string[]>([]);
-
-  protected readonly activeLang = toSignal(this.translocoService.langChanges$, {
-    initialValue: this.translocoService.getActiveLang(),
-  });
-
-  constructor() {
-    this.currentLanguage.set(this.translocoService.getActiveLang());
-
-    const availableLangs = this.translocoService.getAvailableLangs();
-
-    if (Array.isArray(availableLangs) && typeof availableLangs[0] === 'string') {
-      this.languages.set(availableLangs as string[]);
-    } else {
-      this.languages.set(
-        (availableLangs as { id: string; label: string }[]).map((lang) => lang.id),
-      );
-    }
-  }
-
-  
-
-  changeLanguage(lang: string) {
-    this.translocoService.setActiveLang(lang);
-    this.currentLanguage.set(lang);
-  }
+  protected readonly currentLanguage = this.langService.currentLanguage;
+  protected readonly languages = this.langService.languages;
 
   onLanguageChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    const langCode = target.value;
-
-    this.translocoService.setActiveLang(langCode);
-    this.currentLanguage.set(langCode);
-
+    const langCode = (event.target as HTMLSelectElement).value;
+    this.langService.setLanguage(langCode);
     this.updateDirection(langCode);
   }
 
-  updateDirection(lang: string) {
+  private updateDirection(lang: string) {
     const isRtl = ['ar', 'he', 'fa'].includes(lang);
     const direction = isRtl ? 'rtl' : 'ltr';
-
     this.renderer.setAttribute(document.documentElement, 'dir', direction);
   }
 }

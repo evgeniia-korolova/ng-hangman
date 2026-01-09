@@ -10,7 +10,7 @@ import { HangmanService } from './services/hangman-service';
   templateUrl: './hangman.html',
   styleUrl: './hangman.scss',
 })
-export class Hangman {
+export default class Hangman {
   question = '';
   questions: string[] = [];
   guesses: string[] = [];
