@@ -12,13 +12,7 @@ export class HangmanService {
   private readonly languageService = inject(LanguageService);
 
   readonly currentCategory = signal<string>('general');
-
-  // readonly quizzLibraryResource = httpResource<QuizzLibrary>(() => {
-  //   const lang = this.languageService.currentLanguage();
-  //   return `i18n/${lang}.json`;
-  // }, {
-  //   defaultValue: { categoryEntries: {} }
-  // });
+ 
   readonly quizzLibraryResource = httpResource<QuizzLibrary>(
     () => {
       const lang = this.languageService.currentLanguage();
@@ -26,9 +20,7 @@ export class HangmanService {
     },
     {
       defaultValue: { categoryEntries: {} },
-      parse: (json: any): QuizzLibrary => {
-        // json — это весь объект из i18n (title, en, ru, choose_language, mistakes_remaining, categories)
-        // мы возвращаем только нужный кусок
+      parse: (json: any): QuizzLibrary => {        
         return {
           categoryEntries: json.categories ?? {},
         };
@@ -36,7 +28,7 @@ export class HangmanService {
     },
   );
 
-  // список доступных категорий (реактивно, без effect)
+  
   readonly categories = computed<string[]>(() => {
     const lib = this.quizzLibraryResource.value();
     if (!lib) return [];
@@ -56,6 +48,8 @@ export class HangmanService {
     const data = this.currentCategoryData();
     return Array.isArray(data?.items) ? data!.items : [];
   });
+
+  readonly currentQuizzItemsLength = computed<number>(() => this.currentQuizzItems().length)
 
   setCategory(category: string): void {
     this.currentCategory.set(category);

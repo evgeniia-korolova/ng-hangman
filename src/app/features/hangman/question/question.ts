@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { GameService } from '../../../core/services/game-service';
+import { QuizzItem } from '../../../core/models/quizz-item.interface';
+import { HangmanService } from '../../../core/services/hangman-service';
 
 @Component({
   selector: 'app-question',
-  imports: [TranslocoPipe],
+  imports: [],
   templateUrl: './question.html',
   styleUrl: './question.scss',
 })
 export class Question {
-
+  private readonly gameService = inject(GameService);
+  protected readonly currentQuizz = this.gameService.initQuizz;
 }

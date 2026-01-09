@@ -14,19 +14,11 @@ import { Actions } from "./actions/actions";
   styleUrl: './hangman.scss',
 })
 export default class Hangman implements OnInit {
-  question = '';
-  questions: string[] = [];
-  guesses: string[] = [];
-  category = '';
 
   private readonly hangmanService = inject(HangmanService);
   private readonly gameService = inject(GameService);
 
   protected readonly currentQuizz = signal<QuizzItem | undefined>(undefined);
-
-
-
-
 
   ngOnInit(): void {
     
