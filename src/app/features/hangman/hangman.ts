@@ -1,10 +1,9 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { HangmanDisplay } from './hangman-display/hangman-display';
 import { Question } from './question/question';
 import { Keyboard } from './keyboard/keyboard';
 import { HangmanService } from '../../core/services/hangman-service';
 import { GameService } from '../../core/services/game-service';
-import { QuizzItem } from '../../core/models/quizz-item.interface';
 import { Actions } from './actions/actions';
 import { MAX_MISTAKES } from './constants/constants';
 
@@ -14,7 +13,7 @@ import { MAX_MISTAKES } from './constants/constants';
   templateUrl: './hangman.html',
   styleUrl: './hangman.scss',
 })
-export default class Hangman implements OnInit {
+export default class Hangman {
   private readonly hangmanService = inject(HangmanService);
   private readonly gameService = inject(GameService);
 
@@ -27,7 +26,7 @@ export default class Hangman implements OnInit {
   readonly maxMistakes = MAX_MISTAKES;
 
   readonly mistakesRemaining = computed(() => this.maxMistakes - this.wrongGuesses().length);
-  readonly success = signal(false)
+  readonly success = signal(false);
 
   guessLetter(letter: string) {
     const newGuesses = [...this.guesses()];
@@ -47,21 +46,18 @@ export default class Hangman implements OnInit {
     const key: string = prompt('Enter a key') || '';
     this.guessLetter(key);
     this.attempts.update((n) => n + 1);
-    this.checkWin()
+    this.checkWin();
   }
 
   checkWin() {
     const word = this.currentQuizz()?.word ?? '';
-    const uniqueLetters = new Set(word.split(''));
+    const uniqueLetters = new Set(word);
     const guessedLetters = new Set(this.guesses());
 
     const isWin = guessedLetters.size === uniqueLetters.size;
-    if(isWin) {
-      this.success.set(true)
+    if (isWin) {
+      this.success.set(true);
     }
     console.log('win', uniqueLetters.size, guessedLetters.size);
-    
   }
-
-  ngOnInit(): void {}
 }

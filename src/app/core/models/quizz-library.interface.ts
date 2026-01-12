@@ -1,7 +1,5 @@
-import { QuizzDataByCategory } from "./quizz-data-by-category.interface";
+import { QuizzDataByCategory } from './quizz-data-by-category.interface';
 
 export interface QuizzLibrary {
-    categoryEntries: Record<string, QuizzDataByCategory>;
-  }
-  
-  
+  categoryEntries: Record<string, QuizzDataByCategory>;
+}

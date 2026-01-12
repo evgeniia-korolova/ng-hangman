@@ -13,17 +13,17 @@ export class GameService {
 
   readonly randomIndex = computed(() => {
     const items = this.quizItems();
-    const i = this.currentIndex();
+    const index = this.currentIndex();
 
-    if (i === null && items.length) {
+    if (index === null && items.length > 0) {
       return Math.floor(Math.random() * items.length);
     }
-    return i;
+    return index;
   });
 
   readonly initQuizz = computed<QuizzItem | null>(() => {
     const items = this.hangmanService.currentQuizzItems();
-    const i = this.randomIndex();
-    return i !== null && items.length ? (items[i] ?? null) : null;
+    const index = this.randomIndex();
+    return index !== null && items.length > 0 ? (items[index] ?? null) : null;
   });
 }

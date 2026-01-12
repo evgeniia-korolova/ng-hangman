@@ -1,4 +1,4 @@
 export interface QuizzItem {
-    word: string;
-    hint: string;
-  }
+  word: string;
+  hint: string;
+}

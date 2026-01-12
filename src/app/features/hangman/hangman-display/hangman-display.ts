@@ -1,6 +1,5 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MAX_MISTAKES } from '../constants/constants';
 import { QuizzItem } from '../../../core/models/quizz-item.interface';
 
 @Component({

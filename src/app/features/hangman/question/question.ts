@@ -1,8 +1,5 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
-import { TranslocoPipe } from '@jsverse/transloco';
-import { GameService } from '../../../core/services/game-service';
+import { Component, input } from '@angular/core';
 import { QuizzItem } from '../../../core/models/quizz-item.interface';
-import { HangmanService } from '../../../core/services/hangman-service';
 
 @Component({
   selector: 'app-question',
