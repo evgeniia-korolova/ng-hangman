@@ -4,7 +4,7 @@
   <div class="characters">
     @for (char of characters(); track $index) {
       <div class="character">
-        {{char.guessed ? char.value : ''}}
+        {{ char.guessed ? char.value : '' }}
       </div>
     }
   </div>

@@ -1,12 +1,14 @@
-<div class="actions">
-  <label>
-    <span>{{ 'choose_category' | transloco }}</span>
-    <select [value]="hangmanService.currentCategory()" (change)="onCategoryChange($event)">
-      @for (category of hangmanService.categoryList(); track $index) {
-        <option [value]="category.key">
-          {{ category.title }}
-        </option>
-      }
-    </select>
-  </label>
-</div>
+<label class="actions-wrapper">
+  <span>{{ 'choose_category' | transloco }}</span>
+  <select
+    id="category"
+    [value]="hangmanService.currentCategory()"
+    (change)="onCategoryChange($event)"
+  >
+    @for (category of hangmanService.categoryList(); track $index) {
+      <option [value]="category.key">
+        {{ category.title }}
+      </option>
+    }
+  </select>
+</label>

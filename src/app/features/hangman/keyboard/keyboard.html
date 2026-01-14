@@ -1,1 +1,14 @@
-<p>keyboard works!</p>
+<div class="keyboard">
+  <div class="keys">
+    @for (key of keyboardChar(); track key.value) {
+      <button
+        [class.btn-disabled]="key.disabled"
+        [disabled]="key.disabled"
+        (click)="onKeyClick(key.value)"
+        aria-disabled="{{ key.disabled }}"
+      >
+        {{ key.value | uppercase }}
+      </button>
+    }
+  </div>
+</div>

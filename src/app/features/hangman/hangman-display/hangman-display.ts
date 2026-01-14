@@ -9,11 +9,8 @@ import { QuizzItem } from '../../../core/models/quizz-item.interface';
   styleUrl: './hangman-display.scss',
 })
 export class HangmanDisplay {
-
   readonly guesses = input.required<string[]>();
   readonly currentQuizz = input.required<QuizzItem | null>();
- 
-
 
   readonly mistakesRemaining = input.required<number>();
   readonly success = input.required();

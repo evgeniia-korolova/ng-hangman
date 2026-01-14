@@ -8,9 +8,8 @@ describe('HangmanDisplay', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HangmanDisplay]
-    })
-    .compileComponents();
+      imports: [HangmanDisplay],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HangmanDisplay);
     component = fixture.componentInstance;

@@ -7,7 +7,6 @@ import { TranslocoService } from '@jsverse/transloco';
 })
 export class LanguageService {
   private readonly translocoService = inject(TranslocoService);
-    
 
   readonly currentLanguage = signal<string>('en');
   readonly languages = signal<string[]>([]);
@@ -30,8 +29,6 @@ export class LanguageService {
 
   setLanguage(lang: string) {
     this.translocoService.setActiveLang(lang);
-    this.currentLanguage.set(lang);    
+    this.currentLanguage.set(lang);
   }
-
- 
 }

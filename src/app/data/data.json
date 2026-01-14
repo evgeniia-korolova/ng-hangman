@@ -1,107 +1,107 @@
 [
-    {
-        "category": "general",
-        "items": [
-            {
-                "word": {
-                    "en": "guitar",
-                    "ru": "гитара"
-                },
-                "hint": {
-                    "en": "A musical instrument with strings.",
-                    "ru": "Музыкальный инструмент со струнами."
-                }
-            },
-            {
-                "word": {
-                    "en": "oxygen",
-                    "ru": "кислород"
-                },
-                "hint": {
-                    "en": "A colorless, odorless gas essential for life.",
-                    "ru": "Бесцветный, без запаха газ, необходимый для жизни."
-                }
-            },
-            {
-                "word": {
-                    "en": "mountain",
-                    "ru": "гора"
-                },
-                "hint": {
-                    "en": "A large natural elevation of the Earth's surface.",
-                    "ru": "Большое естественное возвышение поверхности Земли."
-                }
-            },
-            {
-                "word": {
-                    "en": "painting",
-                    "ru": "живопись"
-                },
-                "hint": {
-                    "en": "An art form using colors on a surface to create images or expression.",
-                    "ru": "Вид искусства, использующий краски на поверхности для создания изображений или выражения."
-                }
-            },
-            {
-                "word": {
-                    "en": "astronomy",
-                    "ru": "астрономия"
-                },
-                "hint": {
-                    "en": "The scientific study of celestial objects and phenomena.",
-                    "ru": "Научное изучение небесных объектов и явлений."
-                }
-            },
-            {
-                "word": {
-                    "en": "football",
-                    "ru": "футбол"
-                },
-                "hint": {
-                    "en": "A popular sport played with a spherical ball.",
-                    "ru": "Популярный вид спорта, играемый сферическим мячом."
-                }
-            },
-            {
-                "word": {
-                    "en": "chocolate",
-                    "ru": "шоколад"
-                },
-                "hint": {
-                    "en": "A sweet treat made from cocoa beans.",
-                    "ru": "Сладость, приготовленная из какао-бобов."
-                }
-            },
-            {
-                "word": {
-                    "en": "butterfly",
-                    "ru": "бабочка"
-                },
-                "hint": {
-                    "en": "An insect with colorful wings and a slender body.",
-                    "ru": "Насекомое с яркими крыльями и стройным телом."
-                }
-            },
-            {
-                "word": {
-                    "en": "history",
-                    "ru": "история"
-                },
-                "hint": {
-                    "en": "The study of past events and human civilization.",
-                    "ru": "Изучение прошлых событий и человеческой цивилизации."
-                }
-            },
-            {
-                "word": {
-                    "en": "pizza",
-                    "ru": "пицца"
-                },
-                "hint": {
-                    "en": "A savory dish consisting of a round, flattened base with toppings.",
-                    "ru": "Традиционное итальянское блюдо с круглой основой и различными начинками."
-                }
-            }
-        ]
-    }
+  {
+    "category": "general",
+    "items": [
+      {
+        "word": {
+          "en": "guitar",
+          "ru": "гитара"
+        },
+        "hint": {
+          "en": "A musical instrument with strings.",
+          "ru": "Музыкальный инструмент со струнами."
+        }
+      },
+      {
+        "word": {
+          "en": "oxygen",
+          "ru": "кислород"
+        },
+        "hint": {
+          "en": "A colorless, odorless gas essential for life.",
+          "ru": "Бесцветный, без запаха газ, необходимый для жизни."
+        }
+      },
+      {
+        "word": {
+          "en": "mountain",
+          "ru": "гора"
+        },
+        "hint": {
+          "en": "A large natural elevation of the Earth's surface.",
+          "ru": "Большое естественное возвышение поверхности Земли."
+        }
+      },
+      {
+        "word": {
+          "en": "painting",
+          "ru": "живопись"
+        },
+        "hint": {
+          "en": "An art form using colors on a surface to create images or expression.",
+          "ru": "Вид искусства, использующий краски на поверхности для создания изображений или выражения."
+        }
+      },
+      {
+        "word": {
+          "en": "astronomy",
+          "ru": "астрономия"
+        },
+        "hint": {
+          "en": "The scientific study of celestial objects and phenomena.",
+          "ru": "Научное изучение небесных объектов и явлений."
+        }
+      },
+      {
+        "word": {
+          "en": "football",
+          "ru": "футбол"
+        },
+        "hint": {
+          "en": "A popular sport played with a spherical ball.",
+          "ru": "Популярный вид спорта, играемый сферическим мячом."
+        }
+      },
+      {
+        "word": {
+          "en": "chocolate",
+          "ru": "шоколад"
+        },
+        "hint": {
+          "en": "A sweet treat made from cocoa beans.",
+          "ru": "Сладость, приготовленная из какао-бобов."
+        }
+      },
+      {
+        "word": {
+          "en": "butterfly",
+          "ru": "бабочка"
+        },
+        "hint": {
+          "en": "An insect with colorful wings and a slender body.",
+          "ru": "Насекомое с яркими крыльями и стройным телом."
+        }
+      },
+      {
+        "word": {
+          "en": "history",
+          "ru": "история"
+        },
+        "hint": {
+          "en": "The study of past events and human civilization.",
+          "ru": "Изучение прошлых событий и человеческой цивилизации."
+        }
+      },
+      {
+        "word": {
+          "en": "pizza",
+          "ru": "пицца"
+        },
+        "hint": {
+          "en": "A savory dish consisting of a round, flattened base with toppings.",
+          "ru": "Традиционное итальянское блюдо с круглой основой и различными начинками."
+        }
+      }
+    ]
+  }
 ]

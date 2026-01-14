@@ -5,7 +5,8 @@ import { Keyboard } from './keyboard/keyboard';
 import { HangmanService } from '../../core/services/hangman-service';
 import { GameService } from '../../core/services/game-service';
 import { Actions } from './actions/actions';
-import { MAX_MISTAKES } from './constants/constants';
+import { KEY_CHAR_EN, KEYBOARD_LAYOUTS, MAX_MISTAKES } from './constants/constants';
+import { LanguageService } from '../../core/services/language-service';
 
 @Component({
   selector: 'app-hangman',
@@ -16,6 +17,7 @@ import { MAX_MISTAKES } from './constants/constants';
 export default class Hangman {
   private readonly hangmanService = inject(HangmanService);
   private readonly gameService = inject(GameService);
+  private languageService = inject(LanguageService);
 
   readonly currentQuizz = this.gameService.initQuizz;
 
@@ -27,7 +29,6 @@ export default class Hangman {
 
   readonly mistakesRemaining = computed(() => this.maxMistakes - this.wrongGuesses().length);
   readonly success = signal(false);
-  // readonly characters = computed(() => this.currentQuizz()?.word.split('').map(char => ({value: char, guessed: false})))
 
   readonly characters = linkedSignal(() => {
     const word = this.currentQuizz()?.word ?? '';
@@ -37,6 +38,16 @@ export default class Hangman {
     }));
   });
 
+  readonly currentLanguage = this.languageService.currentLanguage;
+
+  readonly keyboardCharacters = linkedSignal(() => {
+    const lang = this.currentLanguage();
+    const keyboardChar = KEYBOARD_LAYOUTS[lang] ?? KEY_CHAR_EN; // fallback
+    return [...keyboardChar].map((char) => ({
+      value: char,
+      disabled: false,
+    }));
+  });
 
   guessLetter(letter: string) {
     const normalizedLetter = letter.toLowerCase();
@@ -49,20 +60,24 @@ export default class Hangman {
       newGuesses.push(normalizedLetter);
       this.guesses.set(newGuesses);
 
-      this.characters.update(chars => 
-        chars.map((char) => 
-        char.value.toLowerCase() === normalizedLetter ? {...char, guessed: true} : char)
-      )
+      this.characters.update((chars) =>
+        chars.map((char) =>
+          char.value.toLowerCase() === normalizedLetter ? { ...char, guessed: true } : char,
+        ),
+      );
     } else {
-      this.wrongGuesses.update(char => [...char, normalizedLetter])
+      this.wrongGuesses.update((char) => [...char, normalizedLetter]);
     }
   }
 
-  dummyClick() {
-    const key: string = prompt('Enter a key') || '';
-    this.guessLetter(key);
+  onKeyPressed(letter: string) {
+    this.keyboardCharacters.update((chars) =>
+      chars.map((char) => (char.value === letter ? { ...char, disabled: true } : char)),
+    );
+    this.guessLetter(letter);
     this.attempts.update((n) => n + 1);
     this.checkWin();
+    console.log('Pressed:', letter);
   }
 
   checkWin() {

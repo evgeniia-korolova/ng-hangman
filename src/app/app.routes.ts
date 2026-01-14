@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-    {
-        path: '',
-        loadComponent: () => import('./features/hangman/hangman')
-    }
+  {
+    path: '',
+    loadComponent: () => import('./features/hangman/hangman'),
+  },
 ];

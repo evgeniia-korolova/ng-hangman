@@ -8,11 +8,9 @@ import { Character } from '../../../core/models/character.interface';
   templateUrl: './question.html',
   styleUrl: './question.scss',
 })
-export class Question {  
+export class Question {
   readonly currentQuizz = input.required<QuizzItem | null>();
-  readonly characters = input.required<Character[]>()
+  readonly characters = input.required<Character[]>();
 
   // protected readonly characters = signal<Character[]>([]);
-
-
 }

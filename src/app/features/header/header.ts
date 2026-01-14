@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { LanguageSwitcher } from "./language-switcher/language-switcher";
+import { LanguageSwitcher } from './language-switcher/language-switcher';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
