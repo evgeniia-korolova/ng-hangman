@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { HangmanDisplay } from './hangman-display/hangman-display';
 import { Question } from './question/question';
 import { Keyboard } from './keyboard/keyboard';
@@ -27,18 +27,34 @@ export default class Hangman {
 
   readonly mistakesRemaining = computed(() => this.maxMistakes - this.wrongGuesses().length);
   readonly success = signal(false);
+  // readonly characters = computed(() => this.currentQuizz()?.word.split('').map(char => ({value: char, guessed: false})))
+
+  readonly characters = linkedSignal(() => {
+    const word = this.currentQuizz()?.word ?? '';
+    return [...word].map((char) => ({
+      value: char,
+      guessed: false,
+    }));
+  });
+
 
   guessLetter(letter: string) {
+    const normalizedLetter = letter.toLowerCase();
+    const word = this.currentQuizz()?.word.toLowerCase() ?? '';
     const newGuesses = [...this.guesses()];
-    if (!letter || newGuesses.includes(letter)) return;
 
-    if (this.currentQuizz()?.word.includes(letter)) {
-      newGuesses.push(letter);
+    if (!normalizedLetter || newGuesses.includes(normalizedLetter)) return;
+
+    if (word.includes(normalizedLetter)) {
+      newGuesses.push(normalizedLetter);
       this.guesses.set(newGuesses);
-    }
 
-    if (!this.currentQuizz()?.word.includes(letter)) {
-      this.wrongGuesses.update((g) => [...g, letter]);
+      this.characters.update(chars => 
+        chars.map((char) => 
+        char.value.toLowerCase() === normalizedLetter ? {...char, guessed: true} : char)
+      )
+    } else {
+      this.wrongGuesses.update(char => [...char, normalizedLetter])
     }
   }
 

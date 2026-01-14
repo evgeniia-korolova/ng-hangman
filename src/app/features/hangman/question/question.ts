@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { QuizzItem } from '../../../core/models/quizz-item.interface';
+import { Character } from '../../../core/models/character.interface';
 
 @Component({
   selector: 'app-question',
@@ -7,8 +8,11 @@ import { QuizzItem } from '../../../core/models/quizz-item.interface';
   templateUrl: './question.html',
   styleUrl: './question.scss',
 })
-export class Question {
-  // private readonly gameService = inject(GameService);
-  // protected readonly currentQuizz = this.gameService.initQuizz;
+export class Question {  
   readonly currentQuizz = input.required<QuizzItem | null>();
+  readonly characters = input.required<Character[]>()
+
+  // protected readonly characters = signal<Character[]>([]);
+
+
 }

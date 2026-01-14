@@ -1,7 +1,7 @@
 <div class="game"> 
   <app-hangman-display [currentQuizz]="currentQuizz()" [guesses]="guesses()" [mistakesRemaining]="mistakesRemaining()" [success]="success()"/>
   <div class="content">
-    <app-question [currentQuizz]="currentQuizz()" />
+    <app-question [currentQuizz]="currentQuizz()" [characters]="characters()" />
     <app-keyboard />
   </div>
   <app-actions class="actions" />

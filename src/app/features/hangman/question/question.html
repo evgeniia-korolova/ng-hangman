@@ -1,5 +1,11 @@
 <div class="question">
   <h2>Word {{ currentQuizz()?.word }}</h2>
   <p>Hint {{ currentQuizz()?.hint }}</p>
-  
+  <div class="characters">
+    @for (char of characters(); track $index) {
+      <div class="character">
+        {{char.guessed ? char.value : ''}}
+      </div>
+    }
+  </div>
 </div>
