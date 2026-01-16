@@ -5,6 +5,12 @@
   "choose_language": "lang",
   "mistakes_remaining": "Mistakes remaining",
   "choose_category": "Choose category",
+  "hint": "Hint",
+  "game-win-title": "Congratulations!",
+  "game-win-message": "You guessed the word!",
+  "game-loss-title": "Sorry, your attempts are over",
+  "game-loss-message": "The secret word was:",
+  "restart-game": "Start new game",
   "categories": {
     "general": {
       "title": "general",
