@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { HangmanService } from './hangman-service';
 import { QuizzItem } from '../models/quizz-item.interface';
 
@@ -7,23 +7,26 @@ import { QuizzItem } from '../models/quizz-item.interface';
 })
 export class GameService {
   private readonly hangmanService = inject(HangmanService);
-  readonly currentIndex = signal<number | null>(null);
+  readonly gamesNumber = signal(0);
 
-  private readonly quizItems = this.hangmanService.currentQuizzItems;
+  private readonly quizzItems = this.hangmanService.currentQuizzItems;
 
-  readonly randomIndex = computed(() => {
-    const items = this.quizItems();
-    const index = this.currentIndex();
-
-    if (index === null && items.length > 0) {
-      return Math.floor(Math.random() * items.length);
-    }
-    return index;
-  });
-
-  readonly initQuizz = computed<QuizzItem | null>(() => {
-    const items = this.hangmanService.currentQuizzItems();
+  readonly randomQuizz = computed<QuizzItem | null>(() => {
+    const items = this.quizzItems();
     const index = this.randomIndex();
     return index !== null && items.length > 0 ? (items[index] ?? null) : null;
   });
+
+  startGame(): void {    
+    this.gamesNumber.update((value) => value + 1);
+  }
+
+  readonly randomIndex = linkedSignal<number | null>(() => {
+    const items = this.quizzItems();
+    this.gamesNumber();
+  
+    if (items.length === 0) return null;
+  
+    return Math.floor(Math.random() * items.length);
+  });  
 }

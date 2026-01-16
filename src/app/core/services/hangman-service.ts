@@ -67,22 +67,4 @@ export class HangmanService {
       title: value.title,
     }));
   });
-
-  // protected readonly wordsResource = httpResource<QuizzLibrary>(
-  //   () => `i18n/${this.langService.currentLanguage()}.json`,
-  // );
-
-  // setCategory(category: string): void {
-  //   this.currentCategory.set(category);
-  // }
-
-  // getWords(): QuizzItem[] {
-  //   const data = this.wordsResource.value();
-  //   if (!data || !data.categoryEntries) return [];
-
-  //   const category = data.categoryEntries[this.currentCategory()];
-  //   if (!category || !Array.isArray(category.items)) return [];
-
-  //   return category.items;
-  // }
 }

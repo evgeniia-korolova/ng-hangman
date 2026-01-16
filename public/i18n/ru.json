@@ -5,6 +5,12 @@
   "choose_language": "язык",
   "mistakes_remaining": "Осталось попыток",
   "choose_category": "Выберите категорию",
+  "hint": "Подсказка",
+  "game-win-title": "Поздравляю!",
+  "game-win-message": "Вы угадали слово!",
+  "game-loss-title": "Увы, попытки закончились",
+  "game-loss-message": "Загаданное слово было:",
+  "restart-game": "Новая игра",
   "categories": {
     "general": {
       "title": "общее",

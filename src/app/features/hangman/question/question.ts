@@ -11,6 +11,4 @@ import { Character } from '../../../core/models/character.interface';
 export class Question {
   readonly currentQuizz = input.required<QuizzItem | null>();
   readonly characters = input.required<Character[]>();
-
-  // protected readonly characters = signal<Character[]>([]);
 }

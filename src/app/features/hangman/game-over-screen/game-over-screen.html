@@ -1,0 +1,12 @@
+@if (success()) {
+  <h2>🎉{{ 'game-win-title' | transloco }} 👏👏👏</h2>
+  <p>{{ 'game-win-message' | transloco }}</p>
+} @else {
+  <h2>😞 {{ 'game-loss-title' | transloco }}</h2>
+  <p>
+    {{ 'game-loss-message' | transloco }}
+    <strong>{{ currentQuizz()?.word }} </strong>
+  </p>
+}
+
+<button (click)="restartGame()">{{ 'restart-game' | transloco }}</button>

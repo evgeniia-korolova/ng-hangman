@@ -11,7 +11,7 @@ import { UpperCasePipe } from '@angular/common';
 export class Keyboard {
   readonly keyboardChar = input.required<KeyboardChar[]>();
 
-  keyPressed = output<string>();
+  readonly keyPressed = output<string>();
 
   onKeyClick(value: string) {
     this.keyPressed.emit(value);

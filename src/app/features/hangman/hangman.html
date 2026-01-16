@@ -6,8 +6,12 @@
     [success]="success()"
   />
   <div class="content">
-    <app-question [currentQuizz]="currentQuizz()" [characters]="characters()" />
-    <app-keyboard [keyboardChar]="keyboardCharacters()" (keyPressed)="onKeyPressed($event)" />
-  </div>
-  <app-actions class="actions" />
+    @if (!isGameOver()) {
+      <app-question [currentQuizz]="currentQuizz()" [characters]="characters()" />
+      <app-keyboard [keyboardChar]="keyboardCharacters()" (keyPressed)="onKeyPressed($event)" />
+    } @else {
+      <app-game-over-screen [success]="success()" [currentQuizz]="currentQuizz()" (startNewGame)="restartGame()" />
+    }
+  </div> 
+  <app-actions />
 </div>
