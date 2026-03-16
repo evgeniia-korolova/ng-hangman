@@ -1,0 +1,11 @@
+<div class="auth-buttons">
+    @if (!authService.isRegistered()) {
+        <button aria-label="Sign up" (click)="authService.openSignUp()" [class]="buttonsStyle()">Sign up</button>
+    }
+    @if (!authService.isAuthenticated() && authService.isRegistered()) {
+        <button [class]="buttonsStyle()" aria-label="Sign in">Sign in</button>
+    }
+    @if(authService.isAuthenticated() && !authService.isRegistered()) {
+        <div class="avatar">{{authService.currentUser()?.avatar}} </div>
+    }
+</div>

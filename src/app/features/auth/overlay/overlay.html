@@ -1,0 +1,17 @@
+@if (authService.isOverlayOpen()) {
+  <div class="overlay">
+    <div class="overlay-backdrop" (click)="closeOverlay()"></div>
+    <div class="overlay-container">
+
+    <button class="close-btn" (click)="closeOverlay()" aria-label="Close overlay">
+      <span class="material-icons">close</span>
+    </button>
+    @if (authService.activeForm() === 'signUp') {
+        <app-sign-up />
+    }
+    @if (authService.activeForm() === 'signIn') {
+        <app-sign-in />
+    }
+    </div>
+  </div>
+}

@@ -1,0 +1,54 @@
+<div class="sign-up-wrapper">
+  <h2 class="title">Sign up</h2>
+
+  <form [formGroup]="signUpForm">
+    <div class="form-field">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" placeholder="Enter your name" type="text" />
+    </div>
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" placeholder="Enter your email" type="email" />
+    </div>
+    <div class="form-field">
+      <label for="password">Password</label>
+
+      <input
+        id="password"
+        formControlName="password"
+        placeholder="Enter your password"
+        [type]="passwordVisible() ? 'text' : 'password'"
+      />
+      <button
+        type="button"
+        class="toggle-password"
+        [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+        (click)="passwordVisible.set(!passwordVisible())"
+      >
+        <span class="material-icons">{{
+          passwordVisible() ? 'visibility' : 'visibility_off'
+        }}</span>
+      </button>
+    </div>
+    <div class="form-field">
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        id="confirm-password"
+        formControlName="confirmPassword"
+        placeholder="Confirm your password"
+        [type]="confirmPasswordVisible() ? 'text' : 'password'"
+      />
+      <button
+        type="button"
+        class="toggle-password"
+        [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+        (click)="confirmPasswordVisible.set(!passwordVisible())"
+      >
+        <span class="material-icons">{{
+          confirmPasswordVisible() ? 'visibility' : 'visibility_off'
+        }}</span>
+      </button>
+    </div>
+    <button type="submit" class="button-accent" (click)="onSubmit()">Sign Up</button>
+  </form>
+</div>

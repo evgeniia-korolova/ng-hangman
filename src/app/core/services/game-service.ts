@@ -7,7 +7,9 @@ import { QuizzItem } from '../models/quizz-item.interface';
 })
 export class GameService {
   private readonly hangmanService = inject(HangmanService);
-  readonly gamesNumber = signal(0);
+  readonly gamesNumber = signal(-1);
+  readonly wins = signal(0);
+  readonly losses = signal(0);
 
   private readonly quizzItems = this.hangmanService.currentQuizzItems;
 

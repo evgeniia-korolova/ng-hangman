@@ -1,0 +1,35 @@
+
+.title {
+    text-align: center;
+}
+
+form {
+    padding-block: 1rem;
+}
+
+.form-field {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    position: relative;
+
+    input {
+        padding: 10px 5px;
+    }
+
+
+    .toggle-password {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+}
+
+
+
+

@@ -2,6 +2,7 @@
   outline: none;
 }
 
+
 html,
 body {
   margin: 0;
@@ -24,4 +25,32 @@ h1 {
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
+}
+
+.button-accent {
+  background-color: var(--french-violet);
+  color: #fff;
+  font-size: clamp(0.8rem, 0.9rem + 0.5vw, 1.2rem);
+  padding: 10px 12px;
+  border: none;
+  border-radius: 1rem;
+  transition: all 10ms ease-in-out;
+}
+
+.button-accent:hover {
+  background-color: var(--vivid-pink);
+}
+
+.button-accent-inverse {
+  background-color: #fff;
+  color: var(--french-violet);
+  font-size: 1rem;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 1rem;
+  transition: all 10ms ease-in-out;
+}
+
+.button-accent-inverse:hover {
+  background-color: var(--light-violet);
 }

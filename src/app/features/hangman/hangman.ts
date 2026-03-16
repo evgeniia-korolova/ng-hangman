@@ -16,18 +16,13 @@ import { GameOverScreen } from './game-over-screen/game-over-screen';
   styleUrl: './hangman.scss',
 })
 export default class Hangman implements OnInit {
-  private readonly hangmanService = inject(HangmanService);
   private readonly gameService = inject(GameService);
   private languageService = inject(LanguageService);
 
-  //все работало пока не закомментировала
-
-  // readonly currentQuizz = this.gameService.initQuizz;
   readonly currentQuizz = this.gameService.randomQuizz;
-  // readonly currentQuizz = signal<QuizzItem | null>(null);
 
-  ngOnInit() {     
-    this.gameService.startGame();    
+  ngOnInit() {
+    this.gameService.startGame();
   }
 
   readonly guesses = signal<string[]>([]);
@@ -86,7 +81,7 @@ export default class Hangman implements OnInit {
     );
     this.guessLetter(letter);
     this.attempts.update((n) => n + 1);
-    this.checkWin();    
+    this.checkWin();
   }
 
   checkWin() {
@@ -97,9 +92,12 @@ export default class Hangman implements OnInit {
     const isWin = guessedLetters.size === uniqueLetters.size;
     if (isWin) {
       this.success.set(true);
+      this.gameService.wins.update((v) => v + 1);
       this.isGameOver.set(true);
     }
+
     if (this.mistakesRemaining() === 0) {
+      this.gameService.losses.update((v) => v + 1);
       this.isGameOver.set(true);
     }
   }
@@ -112,8 +110,6 @@ export default class Hangman implements OnInit {
     this.attempts.set(0);
     this.success.set(false);
     this.isGameOver.set(false);
-    this.keyboardCharacters.update((chars) =>
-      chars.map((char) => ( { ...char, disabled: false })),
-    );
+    this.keyboardCharacters.update((chars) => chars.map((char) => ({ ...char, disabled: false })));
   }
 }
