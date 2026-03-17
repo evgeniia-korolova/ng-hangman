@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { GameService } from './game-service';
-import { User } from '../models/user.model';
+import { UserAuth } from '../models/user-auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,21 +8,20 @@ import { User } from '../models/user.model';
 export class AuthService {
   private readonly gameService = inject(GameService);
 
-  isRegistered = signal(false);
-  isAuthenticated = signal(false);
-
   readonly isOverlayOpen = signal(false);
   activeForm = signal<'signUp' | 'signIn' | null>(null);
-  readonly currentUser = signal<User | null>(null);
+  readonly currentUser = signal<UserAuth | null>(null);
 
   constructor() {
     const raw = localStorage.getItem('hangman-user');
     if (raw) {
-      const user: User = JSON.parse(raw);
+      const user: UserAuth = JSON.parse(raw);
       this.currentUser.set(user);
-      this.isRegistered.set(true);
     }
   }
+
+  readonly isRegistered = computed(() => !!this.currentUser()?.isRegistered);
+  readonly isAuthenticated = computed(() => !!this.currentUser()?.isAuthenticated);
 
   openSignUp() {
     this.isOverlayOpen.set(true);
@@ -39,7 +38,7 @@ export class AuthService {
     this.activeForm.set(null);
   }
 
-  async createUser(name: string, email: string, password: string): Promise<User> {
+  async createUser(name: string, email: string, password: string): Promise<UserAuth> {
     const hashedPassword = await this.hashPassword(password);
 
     const stats =
@@ -51,17 +50,18 @@ export class AuthService {
           }
         : { games: 0, wins: 0, losses: 0 };
 
-    const user: User = {
+    const user: UserAuth = {
       id: crypto.randomUUID(),
       name,
       password: hashedPassword,
       email,
       avatar: name.charAt(0).toUpperCase(),
       stats,
+      isRegistered: true,
+      isAuthenticated: false,
     };
 
     localStorage.setItem('hangman-user', JSON.stringify(user));
-    this.isRegistered.set(true);
     this.currentUser.set(user);
     return user;
   }
@@ -70,12 +70,13 @@ export class AuthService {
     const raw = localStorage.getItem('hangman-user');
     if (!raw) return false;
 
-    const user: User = JSON.parse(raw);
+    const user: UserAuth = JSON.parse(raw);
     const hashedPassword = await this.hashPassword(password);
 
     if (user.email === email && user.password === hashedPassword) {
+      user.isAuthenticated = true;
+      localStorage.setItem('hangman-user', JSON.stringify(user));
       this.currentUser.set(user);
-      this.isAuthenticated.set(true);
       return true;
     }
 
@@ -86,10 +87,9 @@ export class AuthService {
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
 
-    // digest возвращает Promise<ArrayBuffer>, поэтому нужен await
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
 
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashArray = [...new Uint8Array(hashBuffer)];
     const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
     return hashHex;
   }

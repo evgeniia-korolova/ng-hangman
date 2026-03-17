@@ -2,7 +2,6 @@ import { Component, computed, inject, linkedSignal, signal, OnInit } from '@angu
 import { HangmanDisplay } from './hangman-display/hangman-display';
 import { Question } from './question/question';
 import { Keyboard } from './keyboard/keyboard';
-import { HangmanService } from '../../core/services/hangman-service';
 import { GameService } from '../../core/services/game-service';
 import { Actions } from './actions/actions';
 import { KEY_CHAR_EN, KEYBOARD_LAYOUTS, MAX_MISTAKES } from './constants/constants';

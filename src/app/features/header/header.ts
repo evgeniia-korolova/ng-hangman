@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { LanguageSwitcher } from './language-switcher/language-switcher';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { AuthActions } from "../../shared/auth-actions/auth-actions";
