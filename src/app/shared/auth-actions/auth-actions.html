@@ -3,9 +3,9 @@
         <button aria-label="Sign up" (click)="authService.openSignUp()" [class]="buttonsStyle()">Sign up</button>
     }
     @if (!authService.isAuthenticated() && authService.isRegistered()) {
-        <button [class]="buttonsStyle()" aria-label="Sign in">Sign in</button>
+        <button [class]="buttonsStyle()" aria-label="Sign in" (click)="authService.openSignIn()">Sign in</button>
     }
-    @if(authService.isAuthenticated() && !authService.isRegistered()) {
+    @if(authService.isAuthenticated() && authService.isRegistered()) {
         <div class="avatar">{{authService.currentUser()?.avatar}} </div>
     }
 </div>

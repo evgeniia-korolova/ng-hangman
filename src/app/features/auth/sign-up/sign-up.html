@@ -1,7 +1,7 @@
 <div class="sign-up-wrapper">
   <h2 class="title">Sign up</h2>
 
-  <form [formGroup]="signUpForm">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" >
     <div class="form-field">
       <label for="name">Name</label>
       <input id="name" formControlName="name" placeholder="Enter your name" type="text" />
@@ -49,6 +49,6 @@
         }}</span>
       </button>
     </div>
-    <button type="submit" class="button-accent" (click)="onSubmit()">Sign Up</button>
+    <button type="submit" class="button-accent">Sign Up</button>
   </form>
 </div>

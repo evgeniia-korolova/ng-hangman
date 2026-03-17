@@ -22,11 +22,11 @@ export class SignUp {
     confirmPassword: ['', Validators.required],
   });
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.signUpForm.invalid) return;
   
-    const { name, email } = this.signUpForm.getRawValue();  
-    this.authService.createUser(name, email);    
+    const { name, email, password } = this.signUpForm.getRawValue();  
+    await this.authService.createUser(name, email, password);    
     this.signUpForm.reset();
     this.authService.closeOverlay()
   }
