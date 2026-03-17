@@ -1,4 +1,4 @@
-import { Component, computed, inject, linkedSignal, signal, OnInit } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { HangmanDisplay } from './hangman-display/hangman-display';
 import { Question } from './question/question';
 import { Keyboard } from './keyboard/keyboard';
@@ -7,6 +7,8 @@ import { Actions } from './actions/actions';
 import { KEY_CHAR_EN, KEYBOARD_LAYOUTS, MAX_MISTAKES } from './constants/constants';
 import { LanguageService } from '../../core/services/language-service';
 import { GameOverScreen } from './game-over-screen/game-over-screen';
+import { AuthService } from '../../core/services/auth-service';
+import { saveStats } from '../../core/services/storage.helper';
 
 @Component({
   selector: 'app-hangman',
@@ -14,15 +16,11 @@ import { GameOverScreen } from './game-over-screen/game-over-screen';
   templateUrl: './hangman.html',
   styleUrl: './hangman.scss',
 })
-export default class Hangman implements OnInit {
+export default class Hangman {
   private readonly gameService = inject(GameService);
   private languageService = inject(LanguageService);
-
+  readonly authService = inject(AuthService);
   readonly currentQuizz = this.gameService.randomQuizz;
-
-  ngOnInit() {
-    this.gameService.startGame();
-  }
 
   readonly guesses = signal<string[]>([]);
   readonly wrongGuesses = signal<string[]>([]);
@@ -92,17 +90,33 @@ export default class Hangman implements OnInit {
     if (isWin) {
       this.success.set(true);
       this.gameService.wins.update((v) => v + 1);
+      this.gameService.gamesNumber.update((v) => v + 1);
       this.isGameOver.set(true);
+      saveStats({
+        games: this.gameService.gamesNumber(),
+        wins: this.gameService.wins(),
+        losses: this.gameService.losses(),
+      });
     }
 
     if (this.mistakesRemaining() === 0) {
       this.gameService.losses.update((v) => v + 1);
+      this.gameService.gamesNumber.update((v) => v + 1);
       this.isGameOver.set(true);
+      saveStats({
+        games: this.gameService.gamesNumber(),
+        wins: this.gameService.wins(),
+        losses: this.gameService.losses(),
+      });
     }
   }
 
   restartGame(): void {
-    this.gameService.startGame();
+    saveStats({
+      games: this.gameService.gamesNumber(),
+      wins: this.gameService.wins(),
+      losses: this.gameService.losses(),
+    });
 
     this.guesses.set([]);
     this.wrongGuesses.set([]);

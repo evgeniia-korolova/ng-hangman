@@ -1,6 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { GameService } from './game-service';
+
 import { UserAuth } from '../models/user-auth.model';
+import { saveUser } from './storage.helper';
 
 @Injectable({
   providedIn: 'root',
@@ -81,6 +83,16 @@ export class AuthService {
     }
 
     return false;
+  }
+
+  updateStats(games: number, wins: number, losses: number): void {
+    const user = this.currentUser();
+    if (!user) return;
+
+    user.stats = { games, wins, losses };
+    // localStorage.setItem('hangman-user', JSON.stringify(user));
+    saveUser(user);
+    this.currentUser.set(user);
   }
 
   async hashPassword(password: string): Promise<string> {

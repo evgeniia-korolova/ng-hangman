@@ -2,12 +2,13 @@ import { computed, inject, Injectable, linkedSignal, signal } from '@angular/cor
 import { HangmanService } from './hangman-service';
 import { QuizzItem } from '../models/quizz-item.interface';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
-  private readonly hangmanService = inject(HangmanService);
-  readonly gamesNumber = signal(-1);
+  private readonly hangmanService = inject(HangmanService);  
+  readonly gamesNumber = signal(0);
   readonly wins = signal(0);
   readonly losses = signal(0);
 
@@ -18,10 +19,6 @@ export class GameService {
     const index = this.randomIndex();
     return index !== null && items.length > 0 ? (items[index] ?? null) : null;
   });
-
-  startGame(): void {    
-    this.gamesNumber.update((value) => value + 1);
-  }
 
   readonly randomIndex = linkedSignal<number | null>(() => {
     const items = this.quizzItems();
