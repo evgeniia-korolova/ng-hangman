@@ -1,14 +1,33 @@
-<label class="actions-wrapper">
-  <span>{{ 'choose_category' | transloco }}</span>
-  <select
-    id="category"
-    [value]="hangmanService.currentCategory()"
-    (change)="onCategoryChange($event)"
-  >
-    @for (category of hangmanService.categoryList(); track $index) {
-      <option [value]="category.key">
-        {{ category.title }}
-      </option>
+<div class="actions-container">
+  <label class="actions-wrapper">
+    <span>{{ 'choose_category' | transloco }}</span>
+    <select
+      id="category"
+      [value]="hangmanService.currentCategory()"
+      (change)="onCategoryChange($event)"
+    >
+      @for (category of hangmanService.categoryList(); track $index) {
+        <option [value]="category.key">
+          {{ category.title }}
+        </option>
+      }
+    </select>
+  </label>
+  <div class="stastics">
+    @if(authService.isRegistered() && authService.isAuthenticated()) {
+      <div class="stat-field">
+        <div>Total: </div>
+        <div>{{authService.currentUser()?.stats?.games}} </div>
+      </div>
+      <div class="stat-field">
+        <div>Wins: </div>
+        <div>{{authService.currentUser()?.stats?.wins}} </div>
+      </div>
+      <div class="stat-field">
+        <div>Losses: </div>
+        <div>{{authService.currentUser()?.stats?.losses}} </div>
+      </div>
+
     }
-  </select>
-</label>
+  </div>
+</div>
