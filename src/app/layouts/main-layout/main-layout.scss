@@ -1,3 +1,34 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
+
+.header {
+  flex-shrink: 0;
+}
+
+.main {
+  background-image: url('/game-bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding-block: 2rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .main {
+    align-items: flex-start;
+  }
+}
+
+

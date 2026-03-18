@@ -1,10 +1,12 @@
-import { Component, inject, Renderer2 } from '@angular/core';
+import { Component, inject, Renderer2, signal } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { LanguageService } from '../../../core/services/language-service';
+import { LanguageService } from '../../../../core/services/language-service';
+import { ClickOutsideDirective } from '../../../../core/directives/click-outside';
+
 
 @Component({
   selector: 'app-language-switcher',
-  imports: [TranslocoPipe],
+  imports: [TranslocoPipe, ClickOutsideDirective],
   templateUrl: './language-switcher.html',
   styleUrl: './language-switcher.scss',
 })
@@ -14,6 +16,18 @@ export class LanguageSwitcher {
 
   protected readonly currentLanguage = this.langService.currentLanguage;
   protected readonly languages = this.langService.languages;
+
+  protected isOpen = signal(false);
+
+  toggle() {
+    this.isOpen.update(v => !v);
+  }
+
+  select(lang: string) {
+    this.langService.setLanguage(lang);
+    this.updateDirection(lang);
+    this.isOpen.set(false);
+  }
 
   onLanguageChange(event: Event): void {
     const langCode = (event.target as HTMLSelectElement).value;

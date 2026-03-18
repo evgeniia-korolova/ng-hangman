@@ -2,6 +2,15 @@
   outline: none;
 }
 
+:root {
+  --color-primary: #8B4513;
+  --color-secondary: #F5CBA7;
+  --color-text-dark: #1a1a1a;
+  --color-text-light: #ffffff;
+  --background-accent: oklch(47.66% 0.246 305.88);
+  --light-violet: rgb(250, 200, 252);
+}
+
 
 html,
 body {
@@ -19,13 +28,7 @@ h1 {
   color: white;
 }
 
-.container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
+
 
 .button-accent {
   background-color: var(--french-violet);

@@ -1,5 +1,20 @@
+.display {
+  display: flex;
+  justify-content: center;
+}
+
+.display svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+}
+
 .mistakes-count {
   text-align: center;
+  color: var(--color-text-light);
+  margin-top: 20px;
+  font-size: 20px;
 }
 
 .man-bounce {
@@ -14,3 +29,10 @@
     transform: translate(0px, 17px); /*first value is x, second is y*/
   }
 }
+
+@media screen and (max-width: 768px) {
+  svg#hangman {
+    max-height: 200px;
+  }
+}
+

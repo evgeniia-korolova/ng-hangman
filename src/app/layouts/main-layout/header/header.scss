@@ -1,14 +1,11 @@
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
+.toolbar {  
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: var(--french-violet);
-  color: white;
+  gap: 1rem;
+  background-color: var(--background-accent);
+  color: var(--color-text-light);
   font-weight: 600;
   padding-inline: 1rem;
 }
