@@ -1,29 +1,41 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
-import { GameService } from './game-service';
-
+import { computed, Injectable, signal } from '@angular/core';
 import { UserAuth } from '../models/user-auth.model';
-import { saveUser } from './storage.helper';
+import { loadUser, updateUser } from './storage.helper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly gameService = inject(GameService);
-
   readonly isOverlayOpen = signal(false);
   activeForm = signal<'signUp' | 'signIn' | null>(null);
   readonly currentUser = signal<UserAuth | null>(null);
 
   constructor() {
-    const raw = localStorage.getItem('hangman-user');
-    if (raw) {
-      const user: UserAuth = JSON.parse(raw);
-      this.currentUser.set(user);
-    }
+    this.initUser();
   }
 
   readonly isRegistered = computed(() => !!this.currentUser()?.isRegistered);
   readonly isAuthenticated = computed(() => !!this.currentUser()?.isAuthenticated);
+
+  initUser(): void {
+    const user = loadUser();
+    if (user) {
+      this.currentUser.set(user);
+    } else {
+      const guest: UserAuth = {
+        id: crypto.randomUUID(),
+        name: 'Guest',
+        email: '',
+        avatar: 'G',
+        password: '',
+        stats: { games: 0, wins: 0, losses: 0 },
+        isRegistered: false,
+        isAuthenticated: false,
+      };
+      updateUser(guest);
+      this.currentUser.set(guest);
+    }
+  }
 
   openSignUp() {
     this.isOverlayOpen.set(true);
@@ -40,17 +52,9 @@ export class AuthService {
     this.activeForm.set(null);
   }
 
-  async createUser(name: string, email: string, password: string): Promise<UserAuth> {
+  async createUser(name: string, email: string, password: string): Promise<UserAuth | null> {
     const hashedPassword = await this.hashPassword(password);
-
-    const stats =
-      this.gameService.gamesNumber() > -1
-        ? {
-            games: this.gameService.gamesNumber(),
-            wins: this.gameService.wins?.() ?? 0,
-            losses: this.gameService.losses?.() ?? 0,
-          }
-        : { games: 0, wins: 0, losses: 0 };
+    const stats = { games: 0, wins: 0, losses: 0 };
 
     const user: UserAuth = {
       id: crypto.randomUUID(),
@@ -63,22 +67,24 @@ export class AuthService {
       isAuthenticated: false,
     };
 
-    localStorage.setItem('hangman-user', JSON.stringify(user));
-    this.currentUser.set(user);
-    return user;
+    const newUser = updateUser(user);
+
+    if (newUser) {
+      this.currentUser.set(newUser);
+    }
+
+    return newUser;
   }
 
   async loginUser(email: string, password: string): Promise<boolean> {
-    const raw = localStorage.getItem('hangman-user');
-    if (!raw) return false;
+    const user = loadUser();
+    if (!user) return false;
 
-    const user: UserAuth = JSON.parse(raw);
     const hashedPassword = await this.hashPassword(password);
 
     if (user.email === email && user.password === hashedPassword) {
-      user.isAuthenticated = true;
-      localStorage.setItem('hangman-user', JSON.stringify(user));
-      this.currentUser.set(user);
+      const updatedUser = updateUser({ isAuthenticated: true });
+      if (updatedUser) this.currentUser.set(updatedUser);
       return true;
     }
 
@@ -88,11 +94,8 @@ export class AuthService {
   updateStats(games: number, wins: number, losses: number): void {
     const user = this.currentUser();
     if (!user) return;
-
-    user.stats = { games, wins, losses };
-    // localStorage.setItem('hangman-user', JSON.stringify(user));
-    saveUser(user);
-    this.currentUser.set(user);
+    const updatedUser = updateUser({ stats: { games, wins, losses } });
+    if (updatedUser) this.currentUser.set(updatedUser);
   }
 
   async hashPassword(password: string): Promise<string> {

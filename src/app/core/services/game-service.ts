@@ -3,6 +3,7 @@ import { HangmanService } from './hangman-service';
 import { QuizzItem } from '../models/quizz-item.interface';
 import { loadStats } from './storage.helper';
 
+
 @Injectable({
   providedIn: 'root',
 })

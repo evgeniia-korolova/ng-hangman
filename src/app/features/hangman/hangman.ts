@@ -8,7 +8,7 @@ import { KEY_CHAR_EN, KEYBOARD_LAYOUTS, MAX_MISTAKES } from './constants/constan
 import { LanguageService } from '../../core/services/language-service';
 import { GameOverScreen } from './game-over-screen/game-over-screen';
 import { AuthService } from '../../core/services/auth-service';
-import { saveStats } from '../../core/services/storage.helper';
+import { updateUser } from '../../core/services/storage.helper';
 
 @Component({
   selector: 'app-hangman',
@@ -91,6 +91,17 @@ export default class Hangman {
     this.checkWin();
   }
 
+  private syncStatsToUser(): void {
+    const updatedUser = updateUser({
+      stats: {
+        games: this.gameService.gamesNumber(),
+        wins: this.gameService.wins(),
+        losses: this.gameService.losses(),
+      },
+    });
+    if (updatedUser) this.authService.currentUser.set(updatedUser);
+  }
+
   checkWin() {
     const word = this.currentQuizz()?.word ?? '';
     const uniqueLetters = new Set(word);
@@ -102,32 +113,18 @@ export default class Hangman {
       this.gameService.wins.update((v) => v + 1);
       this.gameService.gamesNumber.update((v) => v + 1);
       this.isGameOver.set(true);
-      saveStats({
-        games: this.gameService.gamesNumber(),
-        wins: this.gameService.wins(),
-        losses: this.gameService.losses(),
-      });
+      this.syncStatsToUser();
     }
 
     if (this.mistakesRemaining() === 0) {
       this.gameService.losses.update((v) => v + 1);
       this.gameService.gamesNumber.update((v) => v + 1);
       this.isGameOver.set(true);
-      saveStats({
-        games: this.gameService.gamesNumber(),
-        wins: this.gameService.wins(),
-        losses: this.gameService.losses(),
-      });
+      this.syncStatsToUser();
     }
   }
 
   restartGame(): void {
-    saveStats({
-      games: this.gameService.gamesNumber(),
-      wins: this.gameService.wins(),
-      losses: this.gameService.losses(),
-    });
-
     this.guesses.set([]);
     this.wrongGuesses.set([]);
     this.attempts.set(0);
