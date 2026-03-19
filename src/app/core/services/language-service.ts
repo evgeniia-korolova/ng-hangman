@@ -30,5 +30,6 @@ export class LanguageService {
   setLanguage(lang: string) {
     this.translocoService.setActiveLang(lang);
     this.currentLanguage.set(lang);
+    document.documentElement.lang = lang;
   }
 }

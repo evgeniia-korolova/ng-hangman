@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
-import { KeyboardChar } from '../../../core/models/keyboard-char.interface';
+import { Component, inject, input, output } from '@angular/core';
+import { KeyboardChar, KeyboardRows } from '../../../core/models/keyboard-char.interface';
 import { UpperCasePipe } from '@angular/common';
+import { LanguageService } from '../../../core/services/language-service';
 
 @Component({
   selector: 'app-keyboard',
@@ -9,7 +10,9 @@ import { UpperCasePipe } from '@angular/common';
   styleUrl: './keyboard.scss',
 })
 export class Keyboard {
+  protected readonly langService = inject(LanguageService)
   readonly keyboardChar = input.required<KeyboardChar[]>();
+  readonly rows = input.required<KeyboardRows>();
 
   readonly keyPressed = output<string>();
 

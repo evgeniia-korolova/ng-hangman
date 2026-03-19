@@ -1,41 +1,91 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .keyboard {
-  margin: 0 auto;
   padding-top: 2rem;
+  width: 100%;
 }
 
 .keys {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   gap: 0.5rem;
-  max-width: 400px;
+  --key-size: clamp(28px, 4vw, 48px);
+  --gap: clamp(4px, 1vw, 8px);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: clamp(4px, 1vw, 8px);
 }
 
 button {
-  flex: 0 0 32px;
-  height: 40px;
-  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  width: var(--key-size);
+  color: var(--color-text-dark);
+  font-size: clamp(14px, 2.5vw, 18px);
   cursor: pointer;
+  aspect-ratio: 1;
+  border-radius: 0.6rem;
+  position: relative;
+  transition: all 0.15s ease;
+  z-index: 0;
+  outline: none;
+  border: none;
+  box-shadow:
+    inset -6px 0 6px rgba(0, 0, 0, 0.15),
+    inset 0 -6px 6px rgba(0, 0, 0, 0.25),
+    0 0 0 2px rgba(0, 0, 0, 0.75),
+    6px 12px 15px rgba(0, 0, 0, 0.4);
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 5% 10% 12% 5%;
+    background: linear-gradient(90deg, #f0f0f4, #676771);
+    border-radius: 0.5rem;
+    box-shadow:
+      -8px -8px 8px rgba(255, 255, 255, 0.3),
+      8px 4px 8px rgba(0, 0, 0, 0.15);
+    border-left: 1px solid rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(46, 44, 44, 0.6);
+
+    z-index: 0;
+  }
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow:
+      inset -4px 0 4px rgba(0, 0, 0, 0.1),
+      inset 0 -4px 4px rgba(0, 0, 0, 0.2),
+      0 0 0 2px rgba(0, 0, 0, 0.75),
+      8px 14px 18px rgba(0, 0, 0, 0.35);
+  }
 
   &.btn-disabled {
     pointer-events: none;
     cursor: default;
     opacity: 0.5;
   }
-}
 
-@media (max-width: 920px) {
-  button {
-    flex: 0 0 28px;
-    height: 36px;
-    font-size: 16px;
+  span {
+    position: relative;
+    z-index: 1;
+    color: var(--color-text-dark);
   }
 }
 
-@media (max-width: 882px) {
+@media (max-width: 768px) {
   button {
-    flex: 0 0 24px;
-    height: 32px;
-    font-size: 14px;
+    width: clamp(26px, 7vw, 44px);
+    font-size: clamp(12px, 4vw, 16px);
   }
 }

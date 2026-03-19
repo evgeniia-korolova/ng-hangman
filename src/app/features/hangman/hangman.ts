@@ -51,6 +51,16 @@ export default class Hangman {
     }));
   });
 
+  readonly rows = computed(() => {
+    const chars = this.keyboardCharacters();
+
+    if (this.currentLanguage() === 'en') {
+      return [chars.slice(0, 10), chars.slice(10, 19), chars.slice(19)];
+    }
+
+    return [chars.slice(0, 12), chars.slice(12, 23), chars.slice(23)];
+  });
+
   guessLetter(letter: string) {
     const normalizedLetter = letter.toLowerCase();
     const word = this.currentQuizz()?.word.toLowerCase() ?? '';

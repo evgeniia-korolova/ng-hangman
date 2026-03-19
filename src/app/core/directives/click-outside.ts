@@ -11,8 +11,7 @@ export class ClickOutsideDirective {
   clickOutside = output<void>({ alias: 'appClickOutside' });
 
   onDocumentClick(event: Event) {
-    const target = event.target as Node;
-    console.log('click outside')
+    const target = event.target as Node; 
 
     if (!this.el.nativeElement.contains(target)) {
       this.clickOutside.emit();

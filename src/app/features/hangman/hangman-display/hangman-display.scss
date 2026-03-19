@@ -26,13 +26,14 @@
     transform: translate(0, 0);
   }
   100% {
-    transform: translate(0px, 17px); /*first value is x, second is y*/
+    transform: translate(0px, 17px);
   }
 }
 
 @media screen and (max-width: 768px) {
   svg#hangman {
-    max-height: 200px;
+    max-height: 250px;
+    color: #dbb797;
   }
 }
 
