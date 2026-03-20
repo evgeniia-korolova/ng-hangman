@@ -1,6 +1,11 @@
+:host {
+  display: block;
+}
+
 .display {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .display svg {
@@ -11,6 +16,9 @@
 }
 
 .mistakes-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   color: var(--color-text-light);
   margin-top: 20px;
@@ -32,8 +40,21 @@
 
 @media screen and (max-width: 768px) {
   svg#hangman {
-    max-height: 250px;
+    max-height: 200px;
     color: #dbb797;
+    width: auto;
+  }
+
+  .mistakes-count {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .display {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
   }
 }
 

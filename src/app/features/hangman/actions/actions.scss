@@ -16,6 +16,10 @@
   select {
     padding: 5px 8px;
   }
+
+  label span{
+    font-size: 16px;
+  }
 }
 
 .stastics {
@@ -30,7 +34,16 @@
   gap: 1rem;
 }
 
+// было 768
+
 @media (max-width: 768px) {
+  .stat-field {
+    gap: 0.5rem;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
 
   .actions-container {
     flex-direction: row;
@@ -40,7 +53,5 @@
     flex-direction: row;
   }
 
-  .stat-field {
-    gap: 0.5rem;
-  }
+  
 }

@@ -54,7 +54,9 @@ export class AuthService {
 
   async createUser(name: string, email: string, password: string): Promise<UserAuth | null> {
     const hashedPassword = await this.hashPassword(password);
-    const stats = { games: 0, wins: 0, losses: 0 };
+    
+    const guest = loadUser();
+    const stats = guest?.stats ?? { games: 0, wins: 0, losses: 0 };
 
     const user: UserAuth = {
       id: crypto.randomUUID(),

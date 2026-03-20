@@ -14,6 +14,7 @@
   background-size: cover;
   background-position: center;
   width: 100%;
+  min-height: calc(100dvh - 64px - 48px);
   padding-block: 2rem;
   flex: 1;
   display: flex;
@@ -23,11 +24,18 @@
 
 .footer {
   flex-shrink: 0;
+  height: 48px;
 }
 
-@media (max-width: 768px) {
+// @media (max-width: 768px) {
+//   .main {
+//     align-items: flex-start;
+//   }
+// }
+@media (max-width: 600px) {
   .main {
     align-items: flex-start;
+    padding-block: 1rem;
   }
 }
 

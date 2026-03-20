@@ -83,9 +83,15 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+// было 768
+
+@media (max-width: 600px) {
   button {
-    width: clamp(26px, 7vw, 44px);
+    width: clamp(26px, 6vw, 40px);
     font-size: clamp(12px, 4vw, 16px);
+  }
+
+  .keyboard {
+    padding: 0;
   }
 }

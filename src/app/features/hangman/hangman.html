@@ -1,18 +1,29 @@
 <div class="game">
   <app-hangman-display
-  class="hagman-display"
+    class="hagman-display"
     [currentQuizz]="currentQuizz()"
     [guesses]="guesses()"
     [mistakesRemaining]="mistakesRemaining()"
     [success]="success()"
   />
   <div class="content">
-    @if (!isGameOver()) {
-      <app-question [currentQuizz]="currentQuizz()" [characters]="characters()"/>
-      <app-keyboard [keyboardChar]="keyboardCharacters()" [rows]="rows()" (keyPressed)="onKeyPressed($event)" />
-    } @else {
-      <app-game-over-screen [success]="success()" [currentQuizz]="currentQuizz()" (startNewGame)="restartGame()" />
+    <div class="hangman-body">
+      <app-question [currentQuizz]="currentQuizz()" [characters]="characters()" />
+      <app-keyboard
+        [keyboardChar]="keyboardCharacters()"
+        [rows]="rows()"
+        (keyPressed)="onKeyPressed($event)"
+      />
+    </div>
+    @if (isGameOver()) {
+      <div class="overlay">
+        <app-game-over-screen
+          [success]="success()"
+          [currentQuizz]="currentQuizz()"
+          (startNewGame)="restartGame()"
+        />
+      </div>
     }
-  </div> 
-  <app-actions  class="actions"/>
+  </div>
+  <app-actions class="actions" />
 </div>

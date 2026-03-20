@@ -7,12 +7,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-items: stretch;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   gap: 2rem;
-  padding-inline: 1rem;
-  box-sizing: border-box;
+  padding-inline: 1rem;  
 }
 
 .hagman-display {
@@ -29,7 +29,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  position: relative;
 }
+
+.hangman-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 10;
+}
+
 
 .actions {
   margin-left: auto;
@@ -39,12 +60,21 @@
   align-items: center;
   gap: 1rem;
 }
-
-@media screen and (max-width: 768px) {
+// было 768
+@media screen and (max-width: 600px) {
   .game {
     flex-direction: column;
     align-items: center;
     margin: 0;
+    gap: 1rem;
+  }
+
+  .hagman-display,
+  .content,
+  .actions {
+    flex-basis: 100%;
+    flex-grow: 1;
+    width: 100%;
   }
 
   .actions {

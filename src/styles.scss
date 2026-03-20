@@ -1,14 +1,16 @@
 * {
   outline: none;
+  box-sizing: border-box;
 }
 
 :root {
   --color-primary: #8B4513;
   --color-secondary: #F5CBA7;
   --color-text-dark: #1a1a1a;
-  --color-text-light: #ffffff;
+  --color-text-light: #f5e5f5;
   --background-accent: oklch(47.66% 0.246 305.88);
   --light-violet: rgb(250, 200, 252);
+  --background-light: #f5e5f5;
 }
 
 
@@ -25,7 +27,7 @@ h1 {
   line-height: 100%;
   letter-spacing: -0.125rem;
   margin: 0;
-  color: white;
+  color: var(--color-text-light);
 }
 
 
@@ -34,7 +36,7 @@ h1 {
   background-color: var(--background-accent);
   color: #fff;
   font-size: clamp(0.8rem, 0.9rem + 0.5vw, 1.2rem);
-  padding: 10px 12px;
+  padding: 8px 12px;
   border: none;
   border-radius: 1rem;
   transition: all 10ms ease-in-out;
@@ -57,4 +59,10 @@ h1 {
 
 .button-accent-inverse:hover {
   background-color: var(--light-violet);
+}
+
+@media (max-width: 600px) {
+  .button-accent {
+    padding: 6px 12px;
+  }
 }

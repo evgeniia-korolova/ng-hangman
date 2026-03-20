@@ -1,13 +1,20 @@
-@if (success()) {
-  <h2>🎉{{ 'game-win-title' | transloco }} 👏👏👏</h2>
-  <p>{{ 'game-win-message' | transloco }}</p>
-} @else {
-  <h2>😞 {{ 'game-loss-title' | transloco }}</h2>
-  <p>
-    {{ 'game-loss-message' | transloco }}
-    <strong>{{ currentQuizz()?.word }} </strong>
-  </p>
-}
-
-<button (click)="restartGame()" aria-label="Restart game" class="button-accent">{{ 'restart-game' | transloco }}</button>
-<p>Want to save results? </p>
+<div class="game-over-screen">
+  @if (success()) {
+    <h2>🎉{{ 'game-win-title' | transloco }} 👏</h2>
+    <p>{{ 'game-win-message' | transloco }}</p>
+  } @else {
+    <h2>😞 {{ 'game-loss-title' | transloco }}</h2>
+    <p>
+      {{ 'game-loss-message' | transloco }}
+      <strong>{{ currentQuizz()?.word }} </strong>
+    </p>
+  }
+  
+  <button (click)="restartGame()" aria-label="Restart game" class="button-accent">{{ 'restart-game' | transloco }}</button>
+  @if (!authService.isRegistered() || !authService.isAuthenticated()) {
+    <div class="promo-block">
+      <p>Want to save results? </p>
+      <app-auth-actions [buttonsStyle]="buttonStyle()" />
+    </div>
+  }
+</div>
