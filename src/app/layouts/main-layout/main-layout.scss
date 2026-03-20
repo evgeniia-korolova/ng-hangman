@@ -9,7 +9,7 @@
 }
 
 .main {
-  background-image: url('/game-bg.webp');
+  background-image: url('../../assets/game-bg.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -25,13 +25,12 @@
 .footer {
   flex-shrink: 0;
   height: 48px;
+  background: var(--background-accent);
+  color: var(--color-text-light);
+  border-top: 1px solid gray;
 }
 
-// @media (max-width: 768px) {
-//   .main {
-//     align-items: flex-start;
-//   }
-// }
+
 @media (max-width: 600px) {
   .main {
     align-items: flex-start;
