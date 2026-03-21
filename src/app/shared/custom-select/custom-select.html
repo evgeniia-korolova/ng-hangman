@@ -1,1 +1,46 @@
-<p>custom-select works!</p>
+<div
+  class="switcher"
+  (appClickOutside)="isOpen.set(false)"
+  (keydown.enter)="isOpen.set(false)"
+  (keydown.space)="isOpen.set(false)"
+  tabindex="-1"
+>
+  <button
+    type="button"
+    class="trigger"
+    aria-haspopup="listbox"
+    [attr.aria-expanded]="isOpen()"
+    aria-controls="lang-dropdown"
+    tabindex="-1"
+  >
+    <span>{{ label() | transloco }}</span>
+    <span class="material-symbols-outlined arrow" [class.open]="isOpen()" (click)="toggle()" (keydown.enter)="toggle()" tabindex="-1"
+      >expand_more</span
+    >
+  </button>
+
+  @if (isOpen()) {
+    <ul
+      id="lang-dropdown"
+      class="dropdown"
+      role="listbox"
+      [attr.aria-activedescendant]="selected()"
+    >
+      @for (opt of options(); track opt.key) {
+        <li
+          id="{{ opt.key }}"
+          class="option"
+          role="option"
+          tabindex="0"
+          (click)="onSelect(opt.key)"
+          (keydown.enter)="onSelect(opt.key)"
+          (keydown.space)="onSelect(opt.key)"
+          [class.active]="opt.key === selected()"
+          [attr.aria-selected]="opt.key === selected()"
+        >
+          {{ opt.title }}
+        </li>
+      }
+    </ul>
+  }
+</div>

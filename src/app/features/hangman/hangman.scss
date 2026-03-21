@@ -61,12 +61,19 @@
   gap: 1rem;
 }
 // было 768
+
+@media screen and (max-width: 600px) {
+  .game {
+    gap: 1rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .game {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    gap: 1rem;
+    
   }
 
   .hagman-display,

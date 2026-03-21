@@ -17,7 +17,7 @@
     padding: 5px 8px;
   }
 
-  label span{
+  label span {
     font-size: 16px;
   }
 }
@@ -34,17 +34,21 @@
   gap: 1rem;
 }
 
-// было 768
-
 @media (max-width: 768px) {
   .stat-field {
     gap: 0.5rem;
     font-size: 14px;
   }
+  app-custom-select {
+    --select-font-size: 16px;
+    --select-width: 8rem;
+    --trigger-padding: 8px 8px;
+    --arrow-font-size: 30px;
+    --options-padding: 10px 8px;
+  }
 }
 
 @media (max-width: 600px) {
-
   .actions-container {
     flex-direction: row;
     justify-content: space-around;
@@ -52,6 +56,22 @@
   .stastics {
     flex-direction: row;
   }
-
-  
 }
+
+// .actions-container app-custom-select {
+//   @media (max-width: 768px) {
+//     .trigger {
+//       font-size: 16px;
+//       padding: 6px 10px;
+//     }
+
+//     .option {
+//       font-size: 16px;
+//       padding: 6px 10px;
+//     }
+
+//     .arrow {
+//       font-size: 32px;
+//     }
+//   }
+// }
