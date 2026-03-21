@@ -1,5 +1,11 @@
 <header class="toolbar">
   <h1>{{ 'title' | transloco }}</h1>
   <app-auth-actions [buttonsStyle]="buttonStyle()" />
-  <app-language-switcher />
+  <app-custom-select
+    [label]="currentLanguage()"
+    [options]="hangmanService.languageList()"
+    [selected]="currentLanguage()"
+    (selectOption)="onLanguageSelect($event)"
+  />
+  
 </header>

@@ -24,15 +24,33 @@ export class HangmanService {
     },
     {
       defaultValue: { categoryEntries: {} },
+      // parse: (value: unknown): QuizzLibrary => {
+      //   const json = value as FullLibrary;
+      //   return {
+      //     categoryEntries: json.categories ?? {},
+      //   };
+      // },
       parse: (value: unknown): QuizzLibrary => {
         const json = value as FullLibrary;
-        return {
-          categoryEntries: json.categories ?? {},
-        };
+
+        // категории
+        const categoryEntries = json.categories ?? {};
+
+        // языки: берём ключи en/ru и их значения
+        const languages = Object.entries(json)
+          .filter(([key]) => ['en', 'ru'].includes(key))
+          .map(([key, value]) => ({ key, title: value as string }));
+
+        return { categoryEntries, languages };
       },
     },
   );
 
+  readonly languageList = computed(() => {
+    const library = this.quizzLibraryResource.value();
+    return library?.languages ?? [];
+  });
+  
   readonly categories = computed<string[]>(() => {
     const library = this.quizzLibraryResource.value();
     if (!library) return [];

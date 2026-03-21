@@ -20,11 +20,10 @@ export class CustomSelect {
   toggle() {
     this.isOpen.update((v) => !v);
     console.log('toggle w');
-    
   }
 
-  onSelect(value: string) {    
+  onSelect(value: string) {
     this.selectOption.emit(value);
-    this.isOpen.set(false);    
+    this.isOpen.set(false);
   }
 }
