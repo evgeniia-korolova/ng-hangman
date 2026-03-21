@@ -12,7 +12,9 @@ import { AuthService } from '../../../core/services/auth-service';
 })
 export class GameOverScreen {
   protected readonly authService = inject(AuthService);
+  
   readonly success = input.required<boolean>();
+  readonly correctWord = input.required<string>();
   readonly currentQuizz = input.required<QuizzItem | null>();
   startNewGame = output();
   readonly buttonStyle = signal<string>('button-accent');

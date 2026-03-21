@@ -30,6 +30,8 @@ export default class Hangman {
 
   readonly success = signal(false);
   readonly isGameOver = signal(false);
+  readonly correctWord = signal<string>('');
+
   readonly mistakesRemaining = computed(() => this.maxMistakes - this.wrongGuesses().length);
 
   readonly characters = linkedSignal(() => {
@@ -112,6 +114,7 @@ export default class Hangman {
       this.success.set(true);
       this.gameService.wins.update((v) => v + 1);
       this.gameService.gamesNumber.update((v) => v + 1);
+      this.correctWord.set(word);
       this.isGameOver.set(true);
       this.syncStatsToUser();
     }
@@ -120,6 +123,7 @@ export default class Hangman {
       this.gameService.losses.update((v) => v + 1);
       this.gameService.gamesNumber.update((v) => v + 1);
       this.isGameOver.set(true);
+      this.correctWord.set(word);
       this.syncStatsToUser();
     }
   }
@@ -129,7 +133,7 @@ export default class Hangman {
     this.wrongGuesses.set([]);
     this.attempts.set(0);
     this.success.set(false);
-    this.isGameOver.set(false);
     this.keyboardCharacters.update((chars) => chars.map((char) => ({ ...char, disabled: false })));
+    this.isGameOver.set(false);
   }
 }
