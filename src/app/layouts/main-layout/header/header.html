@@ -3,7 +3,7 @@
   <app-auth-actions [buttonsStyle]="buttonStyle()" />
   <app-custom-select
     [label]="currentLanguage()"
-    [options]="hangmanService.languageList()"
+    [options]="libraryService.languageList()"
     [selected]="currentLanguage()"
     (selectOption)="onLanguageSelect($event)"
   />

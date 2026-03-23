@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { KeyboardChar, KeyboardRows } from '../../../core/models/keyboard-char.interface';
 import { UpperCasePipe } from '@angular/common';
 import { LanguageService } from '../../../core/services/language-service';
@@ -8,6 +8,7 @@ import { LanguageService } from '../../../core/services/language-service';
   imports: [UpperCasePipe],
   templateUrl: './keyboard.html',
   styleUrl: './keyboard.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Keyboard {
   protected readonly langService = inject(LanguageService)
@@ -18,5 +19,6 @@ export class Keyboard {
 
   onKeyClick(value: string) {
     this.keyPressed.emit(value);
+    console.log(value);    
   }
 }

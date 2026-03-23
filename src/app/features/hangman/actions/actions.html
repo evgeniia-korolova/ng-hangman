@@ -1,9 +1,9 @@
 <div class="actions-container">
   <div class="select-wrapper">
     <app-custom-select
-      [label]="hangmanService.currentCategoryData()?.title"
-      [options]="hangmanService.categoryList()"
-      [selected]="hangmanService.currentCategory()"
+      [label]="gameService.currentCategoryData()?.title"
+      [options]="libraryService.categoryList()"
+      [selected]="gameService.currentCategory()"
       (selectOption)="onCategoryChange($event)"
     />
   </div>
