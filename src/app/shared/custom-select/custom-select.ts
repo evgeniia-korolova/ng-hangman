@@ -1,11 +1,9 @@
 import { Component, input, output, signal } from '@angular/core';
-
-import { TranslocoPipe } from '@jsverse/transloco';
 import { ClickOutsideDirective } from '../../core/directives/click-outside';
 
 @Component({
   selector: 'app-custom-select',
-  imports: [TranslocoPipe, ClickOutsideDirective],
+  imports: [ClickOutsideDirective],
   templateUrl: './custom-select.html',
   styleUrl: './custom-select.scss',
 })
@@ -18,8 +16,7 @@ export class CustomSelect {
   protected isOpen = signal(false);
 
   toggle() {
-    this.isOpen.update((v) => !v);
-    console.log('toggle w');
+    this.isOpen.update((v) => !v);    
   }
 
   onSelect(value: string) {

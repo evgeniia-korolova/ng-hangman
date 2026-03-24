@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { HangmanService } from './hangman-service';
 
-describe('HangmanService', () => {
-  let service: HangmanService;
+import { LibraryService } from './library-service';
+
+describe('LibraryService', () => {
+  let service: LibraryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HangmanService);
+    service = TestBed.inject(LibraryService);
   });
 
   it('should be created', () => {

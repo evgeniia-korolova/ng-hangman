@@ -13,7 +13,7 @@
     aria-controls="lang-dropdown"
     tabindex="-1"
   >
-    <span>{{ label() | transloco }}</span>
+    <span>{{ label() }}</span>
     <span class="material-symbols-outlined arrow" [class.open]="isOpen()" (click)="toggle()" (keydown.enter)="toggle()" tabindex="-1"
       >expand_more</span
     >

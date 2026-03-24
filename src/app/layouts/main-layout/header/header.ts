@@ -3,7 +3,8 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { AuthActions } from "../../../shared/auth-actions/auth-actions";
 import { CustomSelect } from "../../../shared/custom-select/custom-select";
 import { LanguageService } from '../../../core/services/language-service';
-import { HangmanService } from '../../../core/services/hangman-service';
+import { LibraryService } from '../../../core/services/library-service';
+import { GameService } from '../../../core/services/game-service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ import { HangmanService } from '../../../core/services/hangman-service';
 })
 export class Header {  
   private readonly langService = inject(LanguageService);
-  protected readonly hangmanService = inject(HangmanService);
+  protected readonly gameService = inject(GameService);
+  protected readonly libraryService = inject(LibraryService);
   private readonly renderer = inject(Renderer2);
 
   readonly buttonStyle = signal<string>('button-accent-inverse');
@@ -25,6 +27,7 @@ export class Header {
   onLanguageSelect(lang: string) {
     this.langService.setLanguage(lang);
     this.updateDirection(lang);
+    this.gameService.restartGame();
   }
 
   private updateDirection(lang: string) {
@@ -32,6 +35,4 @@ export class Header {
     const direction = isRtl ? 'rtl' : 'ltr';
     this.renderer.setAttribute(document.documentElement, 'dir', direction);
   }
-
-
 }
