@@ -72,12 +72,17 @@ button {
       inset 0 -4px 4px rgba(0, 0, 0, 0.2),
       0 0 0 2px rgba(0, 0, 0, 0.75),
       8px 14px 18px rgba(0, 0, 0, 0.35);
+
   }
 
   &.btn-disabled {
     pointer-events: none;
     cursor: default;
     opacity: 0.5;
+  }
+
+  &:focus {
+    outline: 2px solid #1976d2;
   }
 
   span {
@@ -87,10 +92,8 @@ button {
   }
 }
 
-// было 768
 
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   button {
     width: clamp(26px, 6vw, 40px);
     font-size: clamp(12px, 4vw, 16px);

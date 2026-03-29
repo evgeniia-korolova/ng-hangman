@@ -1,5 +1,5 @@
 <div class="question">  
-  <p class="hint">Hint {{ currentQuizz()?.hint }}</p>
+  <p class="hint">{{ currentQuizz()?.hint }}</p>
   <div class="characters">
     @for (char of characters(); track $index) {
       <div class="character">
