@@ -10,3 +10,10 @@
     align-items: center;
     font-size: 28px;
 }
+
+button:focus {
+    outline: 2px solid #1976d2;
+    outline-offset: 2px;
+  }
+  
+  
