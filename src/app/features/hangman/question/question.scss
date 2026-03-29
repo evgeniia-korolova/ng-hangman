@@ -2,6 +2,7 @@
   color: var(--color-text-light);
   font-size: 24px;
   min-height: 88px;
+  text-align: center;
 }
 
 .characters {
@@ -23,16 +24,15 @@
   }
 }
 
-@media (max-width: 768px) {
-  .hint {
-    font-size: 20px;
-    min-height: 75px;
-  }
-}
+// @media (max-width: 768px) {
+//   .hint {
+//     font-size: 20px;
+//     min-height: 75px;
+//   }
+// }
 
-@media (max-width: 600px) {
-  .hint {
-    text-align: center;
+@media (max-width: 768px) {
+  .hint {    
     margin: 0 auto;
     min-height: 56px;    
   }

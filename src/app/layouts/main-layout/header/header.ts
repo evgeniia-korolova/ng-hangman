@@ -1,7 +1,7 @@
 import { Component, inject, Renderer2, signal } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { AuthActions } from "../../../shared/auth-actions/auth-actions";
-import { CustomSelect } from "../../../shared/custom-select/custom-select";
+import { AuthActions } from '../../../shared/auth-actions/auth-actions';
+import { CustomSelect } from '../../../shared/custom-select/custom-select';
 import { LanguageService } from '../../../core/services/language-service';
 import { LibraryService } from '../../../core/services/library-service';
 import { GameService } from '../../../core/services/game-service';
@@ -12,7 +12,7 @@ import { GameService } from '../../../core/services/game-service';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header {  
+export class Header {
   private readonly langService = inject(LanguageService);
   protected readonly gameService = inject(GameService);
   protected readonly libraryService = inject(LibraryService);

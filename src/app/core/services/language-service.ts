@@ -32,6 +32,4 @@ export class LanguageService {
     this.currentLanguage.set(lang);
     document.documentElement.lang = lang;
   }
-
-  
 }

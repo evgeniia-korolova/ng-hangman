@@ -1,31 +1,32 @@
 <div class="game">
-  <app-hangman-display
-    class="hagman-display"
-    [currentQuizz]="gameService.randomQuizz()"
-    [guesses]="gameService.guesses()"
-    [mistakesRemaining]="gameService.mistakesRemaining()"
-    [success]="gameService.success()"
-  />
-  <div class="content">
-    <div class="hangman-body">
-      <!-- !!!!!!!!!!!! -->
-      <app-question [currentQuizz]="gameService.randomQuizz()" [characters]="wordCharacters()" />
-      <app-keyboard
-        [keyboardChar]="keyboardCharacters()"
-        [rows]="rows()"
-        (keyPressed)="onKeyPressed($event)"
-      />
-    </div>
-    @if (gameService.isGameOver()) {
-      <div class="overlay">
-        <app-game-over-screen
-          [success]="gameService.success()"
-          [currentQuizz]="gameService.randomQuizz()"
-          [correctWord]="gameService.correctWord()"
-          (startNewGame)="gameService.restartGame()"
+  <app-actions class="actions" />
+  <div class="game-wrapper">
+    <app-hangman-display
+      class="hagman-display"
+      [currentQuizz]="gameService.randomQuizz()"
+      [guesses]="gameService.guesses()"
+      [mistakesRemaining]="gameService.mistakesRemaining()"
+      [success]="gameService.success()"
+    />
+    <div class="content">
+      <div class="hangman-body">
+        <app-question [currentQuizz]="gameService.randomQuizz()" [characters]="wordCharacters()" />
+        <app-keyboard
+          [keyboardChar]="keyboardCharacters()"
+          [rows]="rows()"
+          (keyPressed)="onKeyPressed($event)"
         />
       </div>
-    }
+      @if (gameService.isGameOver()) {
+        <div class="overlay">
+          <app-game-over-screen
+            [success]="gameService.success()"
+            [currentQuizz]="gameService.randomQuizz()"
+            [correctWord]="gameService.correctWord()"
+            (startNewGame)="gameService.restartGame()"
+          />
+        </div>
+      }
+    </div>
   </div>
-  <app-actions class="actions" />
 </div>

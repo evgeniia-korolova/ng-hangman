@@ -1,24 +1,20 @@
-<div
-  class="switcher"
-  aria-expanded="true"
-  (appClickOutside)="isOpen.set(false)"  
->
+<div class="switcher" aria-expanded="true" (appClickOutside)="isOpen.set(false)">
   <button
+    #trigger
     type="button"
     class="trigger"
     aria-haspopup="listbox"
     [attr.aria-expanded]="isOpen()"
     aria-controls="lang-dropdown"
-    [attr.aria-labelledby]="'label-text selected-value'"
     aria-describedby="lang-hint"
     (click)="toggle()"
+    (keydown)="onTriggerKeyDown($event)"
   >
     <span id="lang-hint" class="visually-hidden">
       Press Enter to open and use arrow keys to select
     </span>
-    <span id="label-text">{{ label() }}</span>
+    <span>{{ label() }}</span>
     <span
-      id="selected-value"
       class="material-symbols-outlined arrow"
       [class.open]="isOpen()"
       aria-hidden="true"
@@ -28,18 +24,18 @@
   </button>
 
   @if (isOpen()) {
-    <ul id="lang-dropdown" class="dropdown" role="listbox">
+    <ul id="lang-dropdown" class="dropdown" role="listbox" (keydown)="onListKeyDown($event)" tabindex="-1">
       @for (opt of options(); track opt.key) {
         <li
           #optionEl
           id="{{ opt.key }}"
           class="option"
           role="option"
-          [attr.tabindex]="opt.key === selected() ? 0 : -1"
-          (click)="onSelect(opt.key)"
-          (keydown)="onKeyDown($event, opt.key)"
+          tabindex="-1"          
           [class.active]="opt.key === selected()"
           [attr.aria-selected]="opt.key === selected()"
+          (click)="onSelect(opt.key)"
+          (keydown)="$event.preventDefault()"
         >
           {{ opt.title }}
         </li>

@@ -1,6 +1,7 @@
 :host {
-  --select-font-size: 16px;
-  --select-width: 8rem;
+  --select-font-size: 20px;
+  --option-font-size: 16px;
+  --select-width: 10rem;
   --trigger-padding: 6px 12px;
   --arrow-font-size: 40px;
   --options-padding: 8px 12px;
@@ -25,9 +26,10 @@
   cursor: pointer;
   transition: all 0.2s ease;
 
-  &:focus {
+  &:focus-visible {
     outline: 2px solid #1976d2;
   }
+
 }
 
 .trigger:hover {
@@ -53,7 +55,7 @@
   background: var(--background-accent);
   border-radius: 10px;
 
-  padding: 6px 0;
+  padding: 0;
   margin: 0;
   list-style: none;
 
@@ -66,7 +68,7 @@
   padding: var(--options-padding);
   cursor: pointer;
   color: var(--color-text-light);
-  font-size: var(--select-font-size);
+  font-size: var(--option-font-size);
   transition: background 0.15s ease;
 
   &:focus {

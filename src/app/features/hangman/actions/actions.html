@@ -1,6 +1,7 @@
 <div class="actions-container">
   <div class="select-wrapper">
     <app-custom-select
+      #categorySelect
       [label]="gameService.currentCategoryData()?.title"
       [options]="libraryService.categoryList()"
       [selected]="gameService.currentCategory()"
