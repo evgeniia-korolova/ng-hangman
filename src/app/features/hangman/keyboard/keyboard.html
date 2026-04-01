@@ -1,4 +1,4 @@
-<div class="keyboard">
+<div class="keyboard" role="group" aria-label="Keyboard">
   <div class="keys" [class]="langService.currentLanguage()">
     @for (row of rows(); track $index; let rowIndex = $index) {
       <div class="row">
