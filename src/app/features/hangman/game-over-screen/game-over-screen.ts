@@ -64,7 +64,7 @@ export class GameOverScreen {
   
     if (event.shiftKey && active === first) {
       event.preventDefault();
-      last.focus();
+      last?.focus();
       return;
     }
   
