@@ -45,7 +45,7 @@ export class GameOverScreen {
     if (restart) elements.push(restart);
   
     const authButtons = this.authComponent()?.buttons?.() ?? [];
-    authButtons.forEach(btn => elements.push(btn.nativeElement));
+    for (const button of authButtons) elements.push(button.nativeElement);
   
     return elements;
   }
@@ -55,10 +55,10 @@ export class GameOverScreen {
   
     const focusableEls = this.getFocusableElements();
   
-    if (!focusableEls.length) return;
+    if (focusableEls.length === 0) return;
   
     const first = focusableEls[0];
-    const last = focusableEls[focusableEls.length - 1];
+    const last = focusableEls.at(-1);
   
     const active = document.activeElement as HTMLElement;
   
