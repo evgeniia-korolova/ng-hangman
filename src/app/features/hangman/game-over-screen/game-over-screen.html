@@ -1,4 +1,10 @@
-<div class="game-over-screen">
+<div
+  class="game-over-screen"
+  (keydown)="handleKeydown($event)"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+>
   @if (success()) {
     <h2>🎉{{ 'game-win-title' | transloco }} 👏</h2>
     <p>{{ 'game-win-message' | transloco }}</p>
@@ -9,11 +15,13 @@
       <strong>{{ correctWord() }} </strong>
     </p>
   }
-  
-  <button (click)="restartGame()" aria-label="Restart game" class="button-accent">{{ 'restart-game' | transloco }}</button>
+
+  <button #restartBtn (click)="restartGame()" aria-label="Restart game" class="button-accent">
+    {{ 'restart-game' | transloco }}
+  </button>
   @if (!authService.isRegistered() || !authService.isAuthenticated()) {
     <div class="promo-block">
-      <p>Want to save results? </p>
+      <p>{{ 'game-over-promo' | transloco }}</p>
       <app-auth-actions [buttonsStyle]="buttonStyle()" />
     </div>
   }

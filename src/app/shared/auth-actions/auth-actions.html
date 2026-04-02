@@ -1,12 +1,12 @@
 <div class="auth-buttons" role="group" aria-label="Authentication actions">
   @if (!authService.isRegistered()) {
-    <button aria-label="Sign up" (click)="authService.openSignUp()" [class]="buttonsStyle()">
-      Sign up
+    <button #authBtn aria-label="Sign up" (click)="authService.openSignUp()" [class]="buttonsStyle()">
+      {{'sign-up' | transloco}}
     </button>
   }
   @if (!authService.isAuthenticated() && authService.isRegistered()) {
-    <button [class]="buttonsStyle()" aria-label="Sign in" (click)="authService.openSignIn()">
-      Sign in
+    <button #authBtn [class]="buttonsStyle()" aria-label="Sign in" (click)="authService.openSignIn()">
+      {{'sign-in' | transloco}}
     </button>
   }
   @if (authService.isAuthenticated() && authService.isRegistered()) {
