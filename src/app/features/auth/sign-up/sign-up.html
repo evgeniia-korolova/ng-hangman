@@ -1,10 +1,16 @@
-<div class="sign-up-wrapper">
+<div class="sign-up-wrapper" appFocusTrapDirective>
   <h2 class="title">Sign up</h2>
 
-  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" >
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
       <label for="name">Name</label>
-      <input id="name" formControlName="name" placeholder="Enter your name" type="text" />
+      <input
+        #firstInput
+        id="name"
+        formControlName="name"
+        placeholder="Enter your name"
+        type="text"
+      />
     </div>
     <div class="form-field">
       <label for="email">Email</label>
@@ -12,7 +18,6 @@
     </div>
     <div class="form-field">
       <label for="password">Password</label>
-
       <input
         id="password"
         formControlName="password"
@@ -20,6 +25,7 @@
         [type]="passwordVisible() ? 'text' : 'password'"
       />
       <button
+        tabindex="-1"
         type="button"
         class="toggle-password"
         [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
@@ -39,6 +45,7 @@
         [type]="confirmPasswordVisible() ? 'text' : 'password'"
       />
       <button
+        tabindex="-1"
         type="button"
         class="toggle-password"
         [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"

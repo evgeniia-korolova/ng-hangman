@@ -1,17 +1,18 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ElementRef, inject, signal, viewChild, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth-service';
+import { FocusTrapDirective } from "../../../core/directives/focus-trap-directive";
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FocusTrapDirective],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.scss',
 })
-export class SignUp {
+export class SignUp implements OnInit {
   protected readonly authService = inject(AuthService);
   protected fb = inject(NonNullableFormBuilder);
-
+  private firstInput = viewChild<ElementRef<HTMLInputElement>>('firstInput');
   protected passwordVisible = signal<boolean>(false);
   protected confirmPasswordVisible = signal<boolean>(false);
 
@@ -21,6 +22,14 @@ export class SignUp {
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required],
   });
+
+  ngOnInit() {
+    this.firstInput()?.nativeElement.focus();
+  }
+
+  focusFirst(): void {
+    this.firstInput()?.nativeElement.focus();
+  }
 
   async onSubmit(): Promise<void> {
     if (this.signUpForm.invalid) return;

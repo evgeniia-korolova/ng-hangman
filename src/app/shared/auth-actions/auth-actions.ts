@@ -12,5 +12,11 @@ export class AuthActions {
   public buttons = viewChildren<ElementRef<HTMLButtonElement>>('authBtn');
   protected readonly authService = inject(AuthService);
 
-  readonly buttonsStyle = input.required<string>()
+  readonly buttonsStyle = input.required<string>();
+
+  focusFirst(): void {
+    queueMicrotask(() => {
+      this.buttons()?.[0]?.nativeElement?.focus();
+    });
+  }
 }
