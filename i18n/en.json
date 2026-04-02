@@ -10,6 +10,9 @@
   "game-win-message": "You guessed the word!",
   "game-loss-title": "Sorry, your attempts are over",
   "game-loss-message": "The secret word was:",
+  "game-over-promo" : "Want to save results?",
+  "sign-up": "Sign Up",
+  "sign-in": "Sign In",
   "restart-game": "Start new game",
   "categories": {
     "general": {

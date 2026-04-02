@@ -10,6 +10,9 @@
   "game-win-message": "Вы угадали слово!",
   "game-loss-title": "Увы, попытки закончились",
   "game-loss-message": "Загаданное слово было:",
+  "game-over-promo" : "Хотите сохранить результат?",
+  "sign-up": "Регистрация",
+  "sign-in": "Войти",
   "restart-game": "Новая игра",
   "categories": {
     "general": {
