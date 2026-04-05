@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, signal, viewChild, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth-service';
-import { FocusTrapDirective } from "../../../core/directives/focus-trap-directive";
+import { FocusTrapDirective } from '../../../core/directives/focus-trap-directive';
 
 @Component({
   selector: 'app-sign-up',
@@ -33,12 +33,10 @@ export class SignUp implements OnInit {
 
   async onSubmit(): Promise<void> {
     if (this.signUpForm.invalid) return;
-  
-    const { name, email, password } = this.signUpForm.getRawValue();  
-    await this.authService.createUser(name, email, password);    
+
+    const { name, email, password } = this.signUpForm.getRawValue();
+    await this.authService.createUser(name, email, password);
     this.signUpForm.reset();
-    this.authService.closeOverlay()
+    this.authService.activeForm.set('signIn');    
   }
-  
-  
 }
