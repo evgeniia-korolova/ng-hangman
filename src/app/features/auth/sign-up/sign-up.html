@@ -23,6 +23,7 @@
         formControlName="password"
         placeholder="Enter your password"
         [type]="passwordVisible() ? 'text' : 'password'"
+        autocomplete="off"
       />
       <button
         tabindex="-1"
@@ -42,6 +43,7 @@
         id="confirm-password"
         formControlName="confirmPassword"
         placeholder="Confirm your password"
+        autocomplete="off"
         [type]="confirmPasswordVisible() ? 'text' : 'password'"
       />
       <button

@@ -8,7 +8,8 @@ import { loadUser, updateUser } from './storage.helper';
 export class AuthService {
   readonly isOverlayOpen = signal(false);
   activeForm = signal<'signUp' | 'signIn' | null>(null);
-  readonly currentUser = signal<UserAuth | null>(null);
+  readonly currentUser = signal<UserAuth | null>(null); 
+  focusOrigin = signal<'auth-signup' | 'auth-signin' | 'avatar' | null>(null);
 
   constructor() {
     this.initUser();
@@ -37,19 +38,22 @@ export class AuthService {
     }
   }
 
+
   openSignUp() {
+    this.focusOrigin.set('auth-signup');
     this.isOverlayOpen.set(true);
     this.activeForm.set('signUp');
   }
 
   openSignIn() {
+    this.focusOrigin.set('auth-signin');
     this.isOverlayOpen.set(true);
     this.activeForm.set('signIn');
   }
 
   closeOverlay() {
     this.isOverlayOpen.set(false);
-    this.activeForm.set(null);
+    this.activeForm.set(null);    
   }
 
   async createUser(name: string, email: string, password: string): Promise<UserAuth | null> {

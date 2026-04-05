@@ -13,6 +13,6 @@ export class Overlay {
   protected readonly authService = inject(AuthService);
 
   closeOverlay() {
-    this.authService.isOverlayOpen.set(false)
+    this.authService.closeOverlay();
   }
 }
