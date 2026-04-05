@@ -1,16 +1,17 @@
 <div class="auth-buttons" role="group" aria-label="Authentication actions">
   @if (!authService.isRegistered()) {
-    <button #authBtn aria-label="Sign up" (click)="authService.openSignUp()" [class]="buttonsStyle()">
+    <button #authBtn #signUpBtn data-signup-btn aria-label="Sign up" (click)="authService.openSignUp()" [class]="buttonsStyle()">
       {{'sign-up' | transloco}}
     </button>
   }
   @if (!authService.isAuthenticated() && authService.isRegistered()) {
-    <button #authBtn [class]="buttonsStyle()" aria-label="Sign in" (click)="authService.openSignIn()">
+    <button #authBtn #signInBtn data-signin-btn [class]="buttonsStyle()" aria-label="Sign in" (click)="authService.openSignIn()">
       {{'sign-in' | transloco}}
     </button>
   }
   @if (authService.isAuthenticated() && authService.isRegistered()) {
-    <div class="avatar" role="img" aria-label="User avatar">
+    <div #avatarBtn class="avatar" role="button"
+    tabindex="0" aria-label="User avatar">
       {{ authService.currentUser()?.avatar }}
     </div>
   }

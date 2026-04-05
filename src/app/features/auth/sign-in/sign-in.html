@@ -1,34 +1,41 @@
-<div class="sign-up-wrapper">
-    <h2 class="title">Sign up</h2>
-  
-    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" >
-      
-      <div class="form-field">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" placeholder="Enter your email" type="email" />
-      </div>
-      <div class="form-field">
-        <label for="password">Password</label>
-  
-        <input
-          id="password"
-          formControlName="password"
-          placeholder="Enter your password"
-          [type]="passwordVisible() ? 'text' : 'password'"
-        />
-        <button
-          type="button"
-          class="toggle-password"
-          [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
-          (click)="passwordVisible.set(!passwordVisible())"
-        >
-          <span class="material-icons">{{
-            passwordVisible() ? 'visibility' : 'visibility_off'
-          }}</span>
-        </button>
-      </div>
-      
-      <button type="submit" class="button-accent">Sign In</button>
-    </form>
-  </div>
-  
+<div class="sign-up-wrapper" appFocusTrapDirective>
+  <h2 class="title">Sign up</h2>
+
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        formControlName="email"
+        placeholder="Enter your email"
+        type="email"
+        autocomplete="true"
+        #firstInput
+      />
+    </div>
+    <div class="form-field">
+      <label for="password">Password</label>
+
+      <input
+        id="password"
+        formControlName="password"
+        placeholder="Enter your password"
+        [type]="passwordVisible() ? 'text' : 'password'"
+        autocomplete="off"
+      />
+      <button
+        tabindex="-1"
+        type="button"
+        class="toggle-password"
+        [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+        (click)="passwordVisible.set(!passwordVisible())"
+      >
+        <span class="material-icons">{{
+          passwordVisible() ? 'visibility' : 'visibility_off'
+        }}</span>
+      </button>
+    </div>
+
+    <button type="submit" class="button-accent">Sign In</button>
+  </form>
+</div>
