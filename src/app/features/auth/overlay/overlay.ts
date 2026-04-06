@@ -15,4 +15,12 @@ export class Overlay {
   closeOverlay() {
     this.authService.closeOverlay();
   }
+
+  handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      console.log('escape');      
+      this.closeOverlay();
+    }
+  }
 }
