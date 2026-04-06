@@ -1,12 +1,11 @@
 @if (authService.isOverlayOpen()) {
-  <div class="overlay">
+  <div class="overlay" tabindex="-1" (keydown)="handleKeydown($event)">
     <div
       class="overlay-backdrop"
       role="button"
       tabindex="0"
       (click)="closeOverlay()"
-      (keydown.enter)="closeOverlay()"
-      (keydown.space)="closeOverlay()"
+            
     ></div>
     <div class="overlay-container">
       <button class="close-btn" (click)="closeOverlay()" aria-label="Close overlay">

@@ -31,6 +31,7 @@ export class GameService {
 
   readonly isGameOver = signal(false);
   readonly correctWord = signal<string>('');
+  readonly focusKeyboard = signal(false);
 
   readonly currentLanguage = this.languageService.currentLanguage;
 
@@ -113,5 +114,6 @@ export class GameService {
     this.attempts.set(0);
     this.success.set(false);
     this.isGameOver.set(false);
+    this.focusKeyboard.set(true);
   }
 }
