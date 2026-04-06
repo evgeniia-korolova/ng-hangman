@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../core/services/auth-service';
 import { SignUp } from "../sign-up/sign-up";
 import { SignIn } from "../sign-in/sign-in";
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-overlay',
-  imports: [SignUp, SignIn],
+  imports: [SignUp, SignIn, TranslocoPipe],
   templateUrl: './overlay.html',
   styleUrl: './overlay.scss',
 })
@@ -14,13 +15,5 @@ export class Overlay {
 
   closeOverlay() {
     this.authService.closeOverlay();
-  }
-
-  handleKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      console.log('escape');      
-      this.closeOverlay();
-    }
-  }
+  }  
 }

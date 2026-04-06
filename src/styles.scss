@@ -30,7 +30,10 @@ h1 {
   color: var(--color-text-light);
 }
 
-
+button {
+  cursor: pointer;
+  user-select: none;
+}
 
 .button-accent {
   background-color: var(--background-accent);
@@ -39,9 +42,7 @@ h1 {
   padding: 8px 12px;
   border: none;
   border-radius: 1rem;
-  transition: all 10ms ease-in-out;
-
-  
+  transition: all 10ms ease-in-out;  
 }
 
 .button-accent:hover {
@@ -72,6 +73,23 @@ h1 {
 .button-accent-inverse:hover {
   background-color: var(--light-violet);
 }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+
+  white-space: nowrap;
+  border: 0;
+}
+
+
 
 @media (max-width: 600px) {
   .button-accent {

@@ -1,14 +1,18 @@
 @if (authService.isOverlayOpen()) {
-  <div class="overlay" tabindex="-1" (keydown)="handleKeydown($event)">
-    <div
-      class="overlay-backdrop"
-      role="button"
-      tabindex="0"
-      (click)="closeOverlay()"
-            
-    ></div>
+  <div
+    class="overlay"
+    tabindex="-1"
+    (keydown.escape)="closeOverlay()"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="auth-overlay-title"
+  >
+    <div class="overlay-backdrop" tabindex="0" (click)="closeOverlay()"></div>
     <div class="overlay-container">
-      <button class="close-btn" (click)="closeOverlay()" aria-label="Close overlay">
+      <h2 id="auth-overlay-title" class="visually-hidden">
+        {{'overlay-heading' | transloco}}
+      </h2>
+      <button class="close-btn" (click)="closeOverlay()" aria-label="Close dialog">
         <span class="material-icons">close</span>
       </button>
       @if (authService.activeForm() === 'signUp') {
