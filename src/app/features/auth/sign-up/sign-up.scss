@@ -8,7 +8,7 @@ form {
 
 .form-field {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 128px 1fr;
   margin-bottom: 1.5rem;
   align-items: center;
   position: relative;
@@ -31,4 +31,8 @@ form {
     border: none;
     cursor: pointer;
   }
+}
+
+.button-auth {
+  margin-top: 1rem;
 }

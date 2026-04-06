@@ -1,27 +1,27 @@
 <div class="sign-up-wrapper" appFocusTrapDirective>
-  <h2 class="title">Sign up</h2>
+  <h2 class="title">{{'sign-up' | transloco}}</h2>
 
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
-      <label for="name">Name</label>
+      <label for="name">{{'user-name' | transloco}}</label>
       <input
         #firstInput
         id="name"
         formControlName="name"
-        placeholder="Enter your name"
+        placeholder="{{'placeholder-name' | transloco}}"
         type="text"
       />
     </div>
     <div class="form-field">
-      <label for="email">Email</label>
-      <input id="email" formControlName="email" placeholder="Enter your email" type="email" />
+      <label for="email">{{'user-email' | transloco}}</label>
+      <input id="email" formControlName="email" placeholder="{{'placeholder-email' | transloco}}" type="email" />
     </div>
     <div class="form-field">
-      <label for="password">Password</label>
+      <label for="password">{{'user-password' | transloco}}</label>
       <input
         id="password"
         formControlName="password"
-        placeholder="Enter your password"
+        placeholder="{{'placeholder-password' | transloco}}"
         [type]="passwordVisible() ? 'text' : 'password'"
         autocomplete="off"
       />
@@ -38,11 +38,11 @@
       </button>
     </div>
     <div class="form-field">
-      <label for="confirm-password">Confirm Password</label>
+      <label for="confirm-password">{{'user-confirm-password' | transloco}}</label>
       <input
         id="confirm-password"
         formControlName="confirmPassword"
-        placeholder="Confirm your password"
+        placeholder="{{'placeholder-confirm-password' | transloco}}"
         autocomplete="off"
         [type]="confirmPasswordVisible() ? 'text' : 'password'"
       />
@@ -58,6 +58,6 @@
         }}</span>
       </button>
     </div>
-    <button type="submit" class="button-accent">Sign Up</button>
+    <button type="submit" class="button-accent button-auth">{{'sign-up' | transloco}}</button>
   </form>
 </div>

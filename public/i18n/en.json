@@ -14,6 +14,14 @@
   "sign-up": "Sign Up",
   "sign-in": "Sign In",
   "overlay-heading" : "Authorization",
+  "user-name" : "Name",
+  "user-email" : "Email",
+  "user-password" : "Password",
+  "user-confirm-password" : "Confirm Password",
+  "placeholder-name" : "Enter your name",
+  "placeholder-email" : "Enter your email",
+  "placeholder-password" : "Enter your password",
+  "placeholder-confirm-password" : "Confirm your password",
   "restart-game": "Start new game",
   "categories": {
     "general": {

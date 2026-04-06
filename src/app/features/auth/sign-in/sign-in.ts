@@ -8,10 +8,11 @@ import {
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth-service';
 import { FocusTrapDirective } from "../../../core/directives/focus-trap-directive";
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [ReactiveFormsModule, FocusTrapDirective],
+  imports: [ReactiveFormsModule, FocusTrapDirective, TranslocoPipe],
   templateUrl: './sign-in.html',
   styleUrl: '../sign-up/sign-up.scss',
 })

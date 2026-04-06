@@ -1,9 +1,9 @@
 <div class="sign-up-wrapper" appFocusTrapDirective>
-  <h2 class="title">Sign up</h2>
+  <h2 class="title">{{'sign-in' | transloco}}</h2>
 
   <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
-      <label for="email">Email</label>
+      <label for="email">{{'user-email' | transloco}}</label>
       <input
         id="email"
         formControlName="email"
@@ -36,6 +36,6 @@
       </button>
     </div>
 
-    <button type="submit" class="button-accent">Sign In</button>
+    <button type="submit" class="button-accent">{{'sign-in' | transloco}}</button>
   </form>
 </div>

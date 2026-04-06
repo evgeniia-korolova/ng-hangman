@@ -2,10 +2,11 @@ import { Component, ElementRef, inject, signal, viewChild, OnInit } from '@angul
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth-service';
 import { FocusTrapDirective } from '../../../core/directives/focus-trap-directive';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule, FocusTrapDirective],
+  imports: [ReactiveFormsModule, FocusTrapDirective, TranslocoPipe],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.scss',
 })
