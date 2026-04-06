@@ -13,6 +13,15 @@
   "game-over-promo" : "Хотите сохранить результат?",
   "sign-up": "Регистрация",
   "sign-in": "Войти",
+  "overlay-heading" : "Авторизация",
+  "user-name" : "Имя",
+  "user-email" : "Почта",
+  "user-password" : "Пароль",
+  "user-confirm-password" : "Подтвердите пароль",
+  "placeholder-name" : "Введите имя",
+  "placeholder-email" : "Введите email",
+  "placeholder-password" : "Введите свой пароль",
+  "placeholder-confirm-password" : "Подтвердите свой пароль",
   "restart-game": "Новая игра",
   "categories": {
     "general": {
