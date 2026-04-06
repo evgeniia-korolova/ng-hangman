@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
   inject,
   input,
@@ -11,6 +12,7 @@ import {
 import { KeyboardChar, KeyboardRows } from '../../../core/models/keyboard-char.interface';
 import { UpperCasePipe } from '@angular/common';
 import { LanguageService } from '../../../core/services/language-service';
+import { GameService } from '../../../core/services/game-service';
 
 @Component({
   selector: 'app-keyboard',
@@ -21,6 +23,7 @@ import { LanguageService } from '../../../core/services/language-service';
 })
 export class Keyboard {
   protected readonly langService = inject(LanguageService);
+  private gameService = inject(GameService);  
   readonly keyboardChar = input.required<KeyboardChar[]>();
   readonly rows = input.required<KeyboardRows>();
 
@@ -29,7 +32,38 @@ export class Keyboard {
   readonly focusedRow = signal(0);
   readonly focusedCol = signal(0);
 
-  readonly buttons = viewChildren<ElementRef<HTMLButtonElement>>('keyBtn');
+  readonly buttons = viewChildren<ElementRef<HTMLButtonElement>>('keyBtn');  
+  
+  constructor() {
+    effect(() => {
+      if (!this.gameService.focusKeyboard()) return;  
+      if (!this.buttons()?.length) return;
+  
+      queueMicrotask(() => {
+        //вариант 1: всегда в начало
+        //this.setFocusAndRestore(0, 0);
+  
+        //вариант 2 (лучше UX): первая НЕ disabled
+        this.focusFirstAvailableKey();
+      });
+  
+      this.gameService.focusKeyboard.set(false);
+    });
+  }
+
+  private focusFirstAvailableKey() {
+    const rows = this.rows();
+  
+    for (const [r, row] of rows.entries()) {
+      for (const [c, key] of row.entries()) {
+        if (key && !key.disabled) {
+          this.setFocusAndRestore(r, c);
+          return;
+        }
+      }
+    }
+  }
+
 
   private syncDomFocus() {
     const row = this.focusedRow();
