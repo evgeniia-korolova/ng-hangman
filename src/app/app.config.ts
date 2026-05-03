@@ -16,8 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(),
-    provideHttpClient(),
+    provideHttpClient(),    
     provideTransloco({
       config: {
         availableLangs: ['en', 'ru'],
